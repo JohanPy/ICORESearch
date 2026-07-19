@@ -406,29 +406,41 @@ def main():
         print("No conferences match the criteria. Exiting.")
         sys.exit(0)
         
-    # 4. Load existing results for checkpoint cache
-    existing_results = {}
+    # 4. Load all existing results to build a cumulative database
+    accumulated_results = {}
     if os.path.exists(OUTPUT_CSV_PATH):
         try:
             df_existing = pd.read_csv(OUTPUT_CSV_PATH)
             for _, r_exist in df_existing.iterrows():
                 acronym = r_exist.get("Acronym")
-                status = r_exist.get("Status")
-                # Cache results that are not failed searches
-                if acronym and pd.notna(status) and status != "Grounded Search Failed":
+                
+                # Support schema transition: retrieve Year if present, otherwise default to current target year
+                year_val = r_exist.get("Year") if "Year" in r_exist else args.year
+                if pd.isna(year_val):
+                    year_val = args.year
+                try:
+                    year_key = int(year_val)
+                except ValueError:
+                    year_key = str(year_val)
+                    
+                if acronym and pd.notna(acronym):
                     entry_dict = r_exist.to_dict()
-                    # Ensure new columns are present in the cached dictionary
+                    # Ensure new schema fields are present
+                    entry_dict.setdefault("Year", year_key)
                     entry_dict.setdefault("Topics", "N/A")
                     entry_dict.setdefault("Short Description", "N/A")
                     entry_dict.setdefault("Other Tracks", "N/A")
-                    existing_results[acronym] = entry_dict
-            print(f"Loaded {len(existing_results)} already processed entries from {OUTPUT_CSV_PATH} to save API quota.")
+                    
+                    # Key is (Acronym, Year)
+                    accumulated_results[(acronym, year_key)] = entry_dict
+            print(f"Loaded {len(accumulated_results)} existing conference editions from {OUTPUT_CSV_PATH} for cumulative database.")
         except Exception as e:
-            print(f"Warning: Could not read existing results from {OUTPUT_CSV_PATH} for caching: {e}")
+            print(f"Warning: Could not read existing results from {OUTPUT_CSV_PATH}: {e}")
             
     print("-" * 60)
     
     results = []
+    current_year = int(args.year)
     
     # 5. Query the grounded model for each conference
     for idx, row in df_filtered.iterrows():
@@ -436,10 +448,12 @@ def main():
         name = row["name"]
         rank = row["rank"]
         
-        # Check cache
-        if acronym in existing_results:
-            print(f"[{len(results)+1}/{total_matches}] Skipping {acronym} (Already in Cache)")
-            results.append(existing_results[acronym])
+        cache_key = (acronym, current_year)
+        
+        # Check cache: skip if it's already resolved successfully
+        if cache_key in accumulated_results and accumulated_results[cache_key].get("Status") not in ["Grounded Search Failed", "Wrong Edition / Date Not Found"]:
+            print(f"[{len(results)+1}/{total_matches}] Skipping {acronym} (Already in Cache for Year {current_year})")
+            results.append(accumulated_results[cache_key])
             continue
             
         print(f"[{len(results)+1}/{total_matches}] Querying {acronym} - {name} (Rank: {rank})...")
@@ -466,6 +480,7 @@ def main():
             
             res_entry = {
                 "Acronym": acronym,
+                "Year": current_year,
                 "Name": name,
                 "Rank": rank,
                 "URL": extracted_data.get("source_url", "N/A"),
@@ -483,6 +498,7 @@ def main():
             print("  Failed to extract data or parse API response.")
             res_entry = {
                 "Acronym": acronym,
+                "Year": current_year,
                 "Name": name,
                 "Rank": rank,
                 "URL": "N/A",
@@ -498,10 +514,19 @@ def main():
             }
             
         results.append(res_entry)
+        accumulated_results[cache_key] = res_entry
         
-        # Progressive save: write intermediate results to CSV immediately
+        # Progressive save: write all accumulated results to CSV immediately
         try:
-            pd.DataFrame(results).to_csv(OUTPUT_CSV_PATH, index=False)
+            df_save = pd.DataFrame(list(accumulated_results.values()))
+            cols_order = [
+                "Acronym", "Year", "Name", "Rank", "URL", 
+                "Abstract Deadline", "Submission Deadline", "Notification Date", 
+                "Timezone", "Topics", "Short Description", "Other Tracks", 
+                "Confidence Score", "Status"
+            ]
+            actual_cols = [c for c in cols_order if c in df_save.columns]
+            df_save[actual_cols].to_csv(OUTPUT_CSV_PATH, index=False)
         except Exception as save_err:
             print(f"  Warning: Progressive save failed: {save_err}")
             
@@ -509,14 +534,11 @@ def main():
         # Sleep for 3.5 seconds to respect Gemma's 30 RPM limits safely
         time.sleep(3.5)
         
-    # Compile final results into DataFrame
-    df_results = pd.DataFrame(results)
-    
-    # 6. Filter by submission date if specified
+    # 6. Filter current run results by submission date for console display only
     filtered_results = []
     
-    for _, res in df_results.iterrows():
-        sub_date_str = res["Submission Deadline"]
+    for res in results:
+        sub_date_str = res.get("Submission Deadline")
         if pd.isna(sub_date_str) or sub_date_str == "N/A" or sub_date_str is None:
             keep = True
         else:
@@ -532,11 +554,9 @@ def main():
             
     df_final = pd.DataFrame(filtered_results)
     
-    # Save to CSV
-    df_final.to_csv(OUTPUT_CSV_PATH, index=False)
     print("=" * 60)
-    print(f"Results successfully saved to {OUTPUT_CSV_PATH}")
-    print(f"Total results exported: {len(df_final)}")
+    print(f"Incremental run completed. Master database saved to {OUTPUT_CSV_PATH}")
+    print(f"Current run matching results: {len(df_final)}")
     print("=" * 60)
     
     # Print a beautiful summary table
@@ -544,9 +564,10 @@ def main():
         pd.set_option('display.max_columns', None)
         pd.set_option('display.width', 1000)
         display_cols = ["Acronym", "Rank", "Submission Deadline", "Notification Date", "Status", "URL"]
+        display_cols = [c for c in display_cols if c in df_final.columns]
         print(df_final[display_cols].to_string(index=False))
     else:
-        print("No conferences matched the submission deadline criteria.")
+        print("No conferences in this run matched the submission deadline criteria.")
 
 if __name__ == "__main__":
     main()
