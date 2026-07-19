@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICORESearch - Conference Dashboard</title>
+    <meta name="description" content="Dashboard for filtering and exploring computer science conferences based on CORE rankings.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>ICORESearch Dashboard</h1>
+            <p>Filter, explore, and export conference data seamlessly.</p>
+        </header>
+
+        <section class="filters-section glass-panel">
+            <div class="filter-group">
+                <label for="theme-filter">Theme / Topic</label>
+                <input type="text" id="theme-filter" placeholder="e.g., Software Engineering">
+            </div>
+            <div class="filter-group">
+                <label for="rank-filter">Rank</label>
+                <select id="rank-filter">
+                    <option value="">All Ranks</option>
+                    <option value="A*">A*</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="date-depot-filter">Submission (On/After)</label>
+                <input type="date" id="date-depot-filter">
+            </div>
+            <div class="filter-group">
+                <label for="date-reponse-filter">Notification (On/After)</label>
+                <input type="date" id="date-reponse-filter">
+            </div>
+            <div class="filter-actions">
+                <button id="reset-btn" class="btn btn-secondary">Reset</button>
+                <button id="export-btn" class="btn btn-primary">
+                    <svg style="width: 16px; height: 16px; margin-right: 6px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Export CSV
+                </button>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="table-container glass-panel">
+                <table id="conferences-table">
+                    <thead>
+                        <tr>
+                            <th>Acronym</th>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Submission</th>
+                            <th>Notification</th>
+                            <th>Topics</th>
+                            <th>Status</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Rows injected by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

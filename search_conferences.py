@@ -9,6 +9,24 @@ import argparse
 from datetime import datetime
 import pandas as pd
 import requests
+from urllib.parse import urlparse
+
+# --- GLOBAL STATISTICS ---
+RUN_STATS = {
+    "total_matched": 0,
+    "skipped_cache": 0,
+    "processed_new": 0,
+    "api_429_errors": 0,
+    "api_timeouts": 0,
+    "api_json_errors": 0,
+    "phase1_success": 0,
+    "phase2_success": 0,
+    "failures_wrong_edition": 0,
+    "failures_grounded_search": 0,
+    "source_domains": {},
+    "missing_submission_date": 0,
+    "missing_notification_date": 0
+}
 
 # Define default paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -102,6 +120,7 @@ def make_grounded_gemini_api_call(payload, api_key, model, max_retries=4):
             if response.status_code == 200:
                 return response.json()
             elif response.status_code == 429:
+                RUN_STATS["api_429_errors"] += 1
                 retry_after = 5.0
                 try:
                     err_data = response.json()
@@ -120,6 +139,9 @@ def make_grounded_gemini_api_call(payload, api_key, model, max_retries=4):
                 else:
                     break
         except Exception as e:
+            err_str = str(e).lower()
+            if "timeout" in err_str or "timed out" in err_str:
+                RUN_STATS["api_timeouts"] += 1
             print(f"  Exception querying API: {e}")
             time.sleep(2)
             
@@ -155,6 +177,7 @@ def parse_extracted_json(raw_json):
     try:
         return json.loads(cleaned)
     except Exception as e:
+        RUN_STATS["api_json_errors"] += 1
         print(f"  JSON parsing exception: {e}")
         return None
 
@@ -258,6 +281,10 @@ Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante
                         if conf_year_found and paper_sub:
                             print("  -> Succès Phase 1 ! Site officiel et date de soumission trouvés.")
                             parsed["status"] = "Success (Official Site)"
+                            RUN_STATS["phase1_success"] += 1
+                            domain = urlparse(parsed["source_url"]).netloc
+                            if domain:
+                                RUN_STATS["source_domains"][domain] = RUN_STATS["source_domains"].get(domain, 0) + 1
                             return parsed
                         else:
                             print("  -> Date non trouvée ou année incorrecte en Phase 1. Lancement de la Phase 2 Fallback...")
@@ -338,9 +365,14 @@ Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante
                         if conf_year_found and paper_sub:
                             print("  -> Succès Phase 2 ! Dates trouvées sur agrégateur.")
                             parsed["status"] = "Success (Fallback Aggregators)"
+                            RUN_STATS["phase2_success"] += 1
+                            domain = urlparse(parsed["source_url"]).netloc
+                            if domain:
+                                RUN_STATS["source_domains"][domain] = RUN_STATS["source_domains"].get(domain, 0) + 1
                         else:
                             print("  -> Date introuvable sur agrégateurs en Phase 2.")
                             parsed["status"] = "Wrong Edition / Date Not Found"
+                            RUN_STATS["failures_wrong_edition"] += 1
                         return parsed
                         
     return None
@@ -442,6 +474,7 @@ def main():
     results = []
     current_year = int(args.year)
     
+    RUN_STATS["total_matched"] = total_matches
     # 5. Query the grounded model for each conference
     for idx, row in df_filtered.iterrows():
         acronym = row["acronym"]
@@ -454,15 +487,24 @@ def main():
         if cache_key in accumulated_results and accumulated_results[cache_key].get("Status") not in ["Grounded Search Failed", "Wrong Edition / Date Not Found"]:
             print(f"[{len(results)+1}/{total_matches}] Skipping {acronym} (Already in Cache for Year {current_year})")
             results.append(accumulated_results[cache_key])
+            RUN_STATS["skipped_cache"] += 1
             continue
             
         print(f"[{len(results)+1}/{total_matches}] Querying {acronym} - {name} (Rank: {rank})...")
+        RUN_STATS["processed_new"] += 1
         
         extracted_data = extract_dates_cascade(acronym, name, args.year, config["gemini_api_key"], config["model_id"])
         
         if extracted_data:
             print(f"  Extracted Data: {extracted_data}")
             status = extracted_data.get("status", "Success")
+            
+            sub_date = extracted_data.get("main_track_dates", {}).get("paper_submission")
+            notif_date = extracted_data.get("main_track_dates", {}).get("notification")
+            if not sub_date or sub_date == "N/A":
+                RUN_STATS["missing_submission_date"] += 1
+            if not notif_date or notif_date == "N/A":
+                RUN_STATS["missing_notification_date"] += 1
             
             # Extract new fields
             scope_and_topics = extracted_data.get("scope_and_topics", {})
@@ -512,11 +554,12 @@ def main():
                 "Confidence Score": 0,
                 "Status": "Grounded Search Failed"
             }
+            RUN_STATS["failures_grounded_search"] += 1
             
         results.append(res_entry)
         accumulated_results[cache_key] = res_entry
         
-        # Progressive save: write all accumulated results to CSV immediately
+        # Progressive save: write all accumulated results to CSV atomically
         try:
             df_save = pd.DataFrame(list(accumulated_results.values()))
             cols_order = [
@@ -526,7 +569,9 @@ def main():
                 "Confidence Score", "Status"
             ]
             actual_cols = [c for c in cols_order if c in df_save.columns]
-            df_save[actual_cols].to_csv(OUTPUT_CSV_PATH, index=False)
+            tmp_path = OUTPUT_CSV_PATH + ".tmp"
+            df_save[actual_cols].to_csv(tmp_path, index=False)
+            os.replace(tmp_path, OUTPUT_CSV_PATH)
         except Exception as save_err:
             print(f"  Warning: Progressive save failed: {save_err}")
             
@@ -568,6 +613,21 @@ def main():
         print(df_final[display_cols].to_string(index=False))
     else:
         print("No conferences in this run matched the submission deadline criteria.")
+        
+    # --- SAVE LOGS ---
+    end_time = time.time()
+    RUN_STATS["execution_time_seconds"] = round(end_time - start_time, 2)
+    RUN_STATS["timestamp"] = datetime.now().isoformat()
+    RUN_STATS["theme_query"] = args.theme
+    
+    log_file = os.path.join(BASE_DIR, "execution_logs.jsonl")
+    try:
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(json.dumps(RUN_STATS) + "\n")
+        print(f"\n[INFO] Statistiques d'exécution sauvegardées dans {log_file}")
+    except Exception as e:
+        print(f"\n[ERREUR] Impossible de sauvegarder les logs : {e}")
 
 if __name__ == "__main__":
+    start_time = time.time()
     main()
