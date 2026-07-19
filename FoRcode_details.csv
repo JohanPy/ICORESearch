@@ -1,0 +1,117 @@
+code,name,parent_code,level
+4601,Applied computing,,Group
+460101,Applications in arts and humanities,4601,Subarea
+460102,Applications in health,4601,Subarea
+460103,Applications in life sciences,4601,Subarea
+460104,Applications in physical sciences,4601,Subarea
+460105,Applications in social sciences and education,4601,Subarea
+460106,Spatial data and applications,4601,Subarea
+4602,Artificial intelligence,,Group
+460201,Artificial life and complex adaptive systems,4602,Subarea
+460202,Autonomous agents and multiagent systems,4602,Subarea
+460203,Evolutionary computation,4602,Subarea
+460204,Fuzzy computation,4602,Subarea
+460205,Intelligent robotics,4602,Subarea
+460206,Knowledge representation and reasoning,4602,Subarea
+460207,Modelling and simulation,4602,Subarea
+460208,Natural language processing,4602,Subarea
+460209,Planning and decision making,4602,Subarea
+460210,Satisfiability and optimisation,4602,Subarea
+460211,Speech production,4602,Subarea
+460212,Speech recognition,4602,Subarea
+4603,Computer vision and multimedia computation,,Group
+460301,Active sensing,4603,Subarea
+460302,Audio processing,4603,Subarea
+460303,Computational imaging,4603,Subarea
+460304,Computer vision,4603,Subarea
+460305,Image and video coding,4603,Subarea
+460306,Image processing,4603,Subarea
+460307,Multimodal analysis and synthesis,4603,Subarea
+460308,Pattern recognition,4603,Subarea
+460309,Video processing,4603,Subarea
+4604,Cybersecurity and privacy,,Group
+460401,Cryptography,4604,Subarea
+460402,Data and information privacy,4604,Subarea
+460403,Data security and protection,4604,Subarea
+460404,Digital forensics,4604,Subarea
+460405,Hardware security,4604,Subarea
+460406,Software and application security,4604,Subarea
+460407,System and network security,4604,Subarea
+4605,Data management and data science,,Group
+460501,Data engineering and data science,4605,Subarea
+460502,Data mining and knowledge discovery,4605,Subarea
+460503,"Data models, storage and indexing",4605,Subarea
+460504,Data quality,4605,Subarea
+460505,Database systems,4605,Subarea
+460506,"Graph, social and multimedia data",4605,Subarea
+460507,Information extraction and fusion,4605,Subarea
+460508,Information retrieval and web search,4605,Subarea
+460509,Query processing and optimisation,4605,Subarea
+460510,Recommender systems,4605,Subarea
+460511,Stream and sensor data,4605,Subarea
+4606,Distributed computing and systems software,,Group
+460601,Cloud computing,4606,Subarea
+460602,Concurrent/parallel systems and technologies,4606,Subarea
+460603,Cyberphysical systems and internet of things,4606,Subarea
+460604,Dependable systems,4606,Subarea
+460605,Distributed systems and algorithms,4606,Subarea
+460606,Energy-efficient computing,4606,Subarea
+460607,High performance computing,4606,Subarea
+460608,Mobile computing,4606,Subarea
+460609,Networking and communications,4606,Subarea
+460610,Operating systems,4606,Subarea
+460611,Performance evaluation,4606,Subarea
+460612,Service oriented computing,4606,Subarea
+4607,"Graphics, augmented reality and games",,Group
+460701,Computer aided design,4607,Subarea
+460702,Computer graphics,4607,Subarea
+460703,Entertainment and gaming,4607,Subarea
+460704,Interactive narrative,4607,Subarea
+460705,Procedural content generation,4607,Subarea
+460706,Serious games,4607,Subarea
+460707,Sound and music computing,4607,Subarea
+460708,Virtual and mixed reality,4607,Subarea
+4608,Human-centred computing,,Group
+460801,Accessible computing,4608,Subarea
+460802,Affective computing,4608,Subarea
+460803,Collaborative and social computing,4608,Subarea
+460804,Computing education,4608,Subarea
+460805,"Fairness, accountability, transparency, trust and ethics of computer systems",4608,Subarea
+460806,Human-computer interaction,4608,Subarea
+460807,Information visualisation,4608,Subarea
+460808,Mixed initiative and human-in-the-loop,4608,Subarea
+460809,Pervasive computing,4608,Subarea
+460810,Social robotics,4608,Subarea
+4611,Machine learning,,Group
+461101,Adversarial machine learning,4611,Subarea
+461102,Context learning,4611,Subarea
+461103,Deep learning,4611,Subarea
+461104,Neural networks,4611,Subarea
+461105,Reinforcement learning,4611,Subarea
+461106,Semi- and unsupervised learning,4611,Subarea
+4612,Software engineering,,Group
+461201,Automated software engineering,4612,Subarea
+461202,Empirical software engineering,4612,Subarea
+461203,Formal methods for software,4612,Subarea
+461204,Programming languages,4612,Subarea
+461205,Requirements engineering,4612,Subarea
+461206,Software architecture,4612,Subarea
+461207,"Software quality, processes and metrics",4612,Subarea
+461208,"Software testing, verification and validation",4612,Subarea
+4613,Theory of computation,,Group
+461301,"Coding, information theory and compression",4613,Subarea
+461302,Computational complexity and computability,4613,Subarea
+461303,Computational logic and formal languages,4613,Subarea
+461304,Concurrency theory,4613,Subarea
+461305,Data structures and algorithms,4613,Subarea
+461306,Numerical computation and mathematical software,4613,Subarea
+461307,Quantum computation,4613,Subarea
+CSE,Computer Systems Engineering,,Group
+CSE_01,Computer Architectures,CSE,Subarea
+CSE_02,VLSI Testing and Dependability,CSE,Subarea
+CSE_03,VLSI Design,CSE,Subarea
+CSE_04,Embedded and Cyber-physical Systems Design,CSE,Subarea
+CSE_05,High Performance Computing,CSE,Subarea
+CSE_06,Architectures for Industrial Informatics,CSE,Subarea
+CSE_07,Robotics Architectures,CSE,Subarea
+CSE_08,Quantum Computing Engineering,CSE,Subarea
