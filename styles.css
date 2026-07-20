@@ -74,6 +74,8 @@ header p {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
     align-items: end;
+    position: relative;
+    z-index: 10;
 }
 
 .filter-group {
@@ -233,3 +235,216 @@ tbody tr:last-child td {
     .filter-actions { flex-direction: column; }
     .btn { width: 100%; }
 }
+
+/* Custom dropdown and checklist/tree selectors */
+.relative {
+    position: relative;
+}
+
+.custom-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.custom-select:hover {
+    border-color: var(--primary-color);
+}
+
+.chevron {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 8px;
+    color: var(--text-muted);
+}
+
+.custom-select.active .chevron {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    min-width: 300px;
+    max-height: 400px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideDown 0.2s ease-out;
+}
+
+.dropdown-menu.hidden {
+    display: none;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-search {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.dropdown-search input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+
+.tree-container {
+    overflow-y: auto;
+    padding: 0.75rem;
+    flex: 1;
+}
+
+/* Tree nodes */
+.tree-node {
+    margin-bottom: 0.25rem;
+}
+
+.node-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.node-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.toggle-icon {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    width: 12px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+    text-align: center;
+}
+
+.node-children {
+    padding-left: 1.5rem;
+    margin-top: 0.25rem;
+    border-left: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.node-children.hidden {
+    display: none;
+}
+
+.subarea-node {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.subarea-node:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.node-label {
+    font-size: 0.85rem;
+    user-select: none;
+}
+
+.tree-node.hidden, .subarea-node.hidden {
+    display: none;
+}
+
+/* Checkbox inputs and labels */
+input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: var(--primary-color);
+    width: 15px;
+    height: 15px;
+}
+
+/* Rank lists */
+.rank-options {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.checkbox-container:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Sortable table headers */
+th[data-sort] {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+th[data-sort]:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-color);
+}
+
+th[data-sort]::after {
+    content: ' ↕';
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.4;
+    margin-left: 4px;
+    display: inline-block;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+th[data-sort].sort-asc::after {
+    content: ' ▲';
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+th[data-sort].sort-desc::after {
+    content: ' ▼';
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+

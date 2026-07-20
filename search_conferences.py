@@ -25,7 +25,8 @@ RUN_STATS = {
     "failures_grounded_search": 0,
     "source_domains": {},
     "missing_submission_date": 0,
-    "missing_notification_date": 0
+    "missing_notification_date": 0,
+    "api_response_times": []
 }
 
 # Define default paths
@@ -116,7 +117,11 @@ def make_grounded_gemini_api_call(payload, api_key, model, max_retries=4):
     for attempt in range(max_retries):
         try:
             # High timeout of 90 seconds because grounding performs external web searches
+            start_req = time.time()
             response = requests.post(url, json=payload, headers=headers, timeout=90)
+            req_time = round(time.time() - start_req, 2)
+            RUN_STATS["api_response_times"].append(req_time)
+            
             if response.status_code == 200:
                 return response.json()
             elif response.status_code == 429:
@@ -483,8 +488,8 @@ def main():
         
         cache_key = (acronym, current_year)
         
-        # Check cache: skip if it's already resolved successfully
-        if cache_key in accumulated_results and accumulated_results[cache_key].get("Status") not in ["Grounded Search Failed", "Wrong Edition / Date Not Found"]:
+        # Check cache: skip if it's already in the cache (including previous failures)
+        if cache_key in accumulated_results:
             print(f"[{len(results)+1}/{total_matches}] Skipping {acronym} (Already in Cache for Year {current_year})")
             results.append(accumulated_results[cache_key])
             RUN_STATS["skipped_cache"] += 1

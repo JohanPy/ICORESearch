@@ -6,9 +6,9 @@
     <title>ICORESearch - Conference Dashboard</title>
     <meta name="description" content="Dashboard for filtering and exploring computer science conferences based on CORE rankings.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=1.2">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=1.2" defer></script>
 </head>
 <body>
     <div class="app-container">
@@ -18,26 +18,85 @@
         </header>
 
         <section class="filters-section glass-panel">
-            <div class="filter-group">
-                <label for="theme-filter">Theme / Topic</label>
-                <input type="text" id="theme-filter" placeholder="e.g., Software Engineering">
+            <div class="filter-group relative">
+                <label>Themes / Topics</label>
+                <div class="custom-select" id="theme-select-btn">
+                    <span class="placeholder" id="theme-select-label">All Themes</span>
+                    <svg class="chevron" viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="currentColor" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="dropdown-menu hidden" id="theme-dropdown-menu">
+                    <div class="dropdown-search">
+                        <input type="text" id="theme-search" placeholder="Search themes...">
+                    </div>
+                    <div class="tree-container" id="theme-tree">
+                        <div style="padding: 10px; text-align: center; color: var(--text-muted);">Loading themes...</div>
+                    </div>
+                </div>
             </div>
-            <div class="filter-group">
-                <label for="rank-filter">Rank</label>
-                <select id="rank-filter">
-                    <option value="">All Ranks</option>
-                    <option value="A*">A*</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                </select>
+            <div class="filter-group relative">
+                <label>Ranks</label>
+                <div class="custom-select" id="rank-select-btn">
+                    <span class="placeholder" id="rank-select-label">All Ranks</span>
+                    <svg class="chevron" viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="currentColor" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="dropdown-menu hidden" id="rank-dropdown-menu">
+                    <div class="rank-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="A*" class="rank-checkbox" checked>
+                            <span>A*</span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="A" class="rank-checkbox" checked>
+                            <span>A</span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="B" class="rank-checkbox" checked>
+                            <span>B</span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="C" class="rank-checkbox" checked>
+                            <span>C</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-group relative">
+                <label>Year</label>
+                <div class="custom-select" id="year-select-btn">
+                    <span class="placeholder" id="year-select-label">All Years</span>
+                    <svg class="chevron" viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="currentColor" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="dropdown-menu hidden" id="year-dropdown-menu">
+                    <div class="rank-options" id="year-options">
+                        <!-- Dynamic checkboxes injected here -->
+                    </div>
+                </div>
+            </div>
+            <div class="filter-group relative">
+                <label>Status</label>
+                <div class="custom-select" id="status-select-btn">
+                    <span class="placeholder" id="status-select-label">All Statuses</span>
+                    <svg class="chevron" viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="currentColor" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="dropdown-menu hidden" id="status-dropdown-menu">
+                    <div class="rank-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="found" class="status-checkbox" checked>
+                            <span>Found (Success)</span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="notfound" class="status-checkbox" checked>
+                            <span>Not Found / Failed</span>
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="filter-group">
                 <label for="date-depot-filter">Submission (On/After)</label>
                 <input type="date" id="date-depot-filter">
             </div>
             <div class="filter-group">
-                <label for="date-reponse-filter">Notification (On/After)</label>
+                <label for="date-reponse-filter">Notification (On/Before)</label>
                 <input type="date" id="date-reponse-filter">
             </div>
             <div class="filter-actions">
@@ -54,14 +113,15 @@
                 <table id="conferences-table">
                     <thead>
                         <tr>
-                            <th>Acronym</th>
-                            <th>Name</th>
-                            <th>Rank</th>
-                            <th>Submission</th>
-                            <th>Notification</th>
-                            <th>Topics</th>
-                            <th>Status</th>
-                            <th>Link</th>
+                            <th data-sort="Acronym">Acronym</th>
+                            <th data-sort="Year">Year</th>
+                            <th data-sort="Name">Name</th>
+                            <th data-sort="Rank">Rank</th>
+                            <th data-sort="Submission Deadline">Submission</th>
+                            <th data-sort="Notification Date">Notification</th>
+                            <th data-sort="Topics">Topics</th>
+                            <th data-sort="Status">Status</th>
+                            <th data-sort="URL">Link</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
