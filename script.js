@@ -631,6 +631,11 @@ function renderTable(data) {
         const topicsText = conf.Topics ? conf.Topics : 'N/A';
         const formattedTopics = topicsText.replace(/"/g, '&quot;');
 
+        const githubEditUrl = `https://github.com/JohanPy/ICORESearch/edit/master/conferences_db.json`;
+        const editHtml = `<a href="${githubEditUrl}" target="_blank" class="edit-btn" title="Proposer une modification sur GitHub (ouvre conferences_db.json)">
+            <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+        </a>`;
+
         tr.innerHTML = `
             <td><strong>${conf.Acronym || 'N/A'}</strong></td>
             <td><span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">${conf.Year || 'N/A'}</span></td>
@@ -644,7 +649,12 @@ function renderTable(data) {
                     ${conf.Status || 'N/A'}
                 </span>
             </td>
-            <td>${urlHtml}</td>
+            <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    ${urlHtml}
+                    ${editHtml}
+                </div>
+            </td>
         `;
         tbody.appendChild(tr);
     });

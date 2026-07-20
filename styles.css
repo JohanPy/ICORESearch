@@ -447,4 +447,26 @@ th[data-sort].sort-desc::after {
     color: var(--primary-color);
 }
 
+/* Edit Pen Button Style */
+.edit-btn {
+    color: var(--text-muted);
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.4);
+    transform: translateY(-1px);
+}
+
+
 

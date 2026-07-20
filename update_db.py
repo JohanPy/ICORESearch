@@ -315,6 +315,12 @@ def select_batch_to_process(db, core_csv_path, target_year=TARGET_YEAR, max_batc
             candidates_pending.append((item_info, "PENDING (New)", "HARVEST"))
         else:
             entry = db[acronym]
+
+            # Rule: If manual_override is True, totally ignore (never select for search or verification)
+            if entry.get("manual_override") is True:
+                print(f"  [Manual Override] Skipping {acronym} (manual_override=True)")
+                continue
+
             status = entry.get("status", "PENDING")
             last_checked_str = entry.get("last_checked")
 
@@ -727,6 +733,7 @@ def main():
                     "status": state_status,
                     "status_detail": extracted.get("status_detail", state_status),
                     "last_checked": today_str,
+                    "manual_override": db.get(acronym, {}).get("manual_override", False),
                     "acronym": acronym,
                     "year": year,
                     "name": name,
@@ -747,6 +754,7 @@ def main():
                     "status": state_status,
                     "status_detail": "Grounded Search Failed",
                     "last_checked": today_str,
+                    "manual_override": db.get(acronym, {}).get("manual_override", False),
                     "acronym": acronym,
                     "year": year,
                     "name": name,
