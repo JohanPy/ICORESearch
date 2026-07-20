@@ -20,6 +20,9 @@ from datetime import datetime, timezone
 from urllib.parse import urlparse
 import pandas as pd
 
+# Force unbuffered output for GitHub Actions logs
+sys.stdout.reconfigure(line_buffering=True)
+
 # ==========================================
 # CONFIGURATION & CONSTANTS
 # ==========================================
@@ -81,7 +84,7 @@ def make_grounded_gemini_api_call(payload, api_key, model, max_retries=3):
 
     for attempt in range(max_retries):
         try:
-            response = requests.post(url, json=payload, headers=headers, timeout=90)
+            response = requests.post(url, json=payload, headers=headers, timeout=35)
             
             if response.status_code == 200:
                 return response.json()
