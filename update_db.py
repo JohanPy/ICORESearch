@@ -37,11 +37,11 @@ MAX_API_CALLS_HARD_LIMIT = 480  # Strict script limit (max 500 allowed per day b
 KILL_SWITCH_THRESHOLD = 450     # Stop loop cleanly when reached
 TARGET_YEAR = 2027              # Default target edition year
 
-# Selection Triage Settings (Max 120 total)
-MAX_BATCH_SIZE = 120
-MAX_PENDING_SLOTS = 60
-MAX_INCOMPLETE_SLOTS = 20
-MAX_NOT_FOUND_SLOTS = 20
+# Selection Triage Settings (Max 50 total)
+MAX_BATCH_SIZE = 50
+MAX_PENDING_SLOTS = 25
+MAX_INCOMPLETE_SLOTS = 10
+MAX_NOT_FOUND_SLOTS = 10
 
 # Global API Call Counter
 api_calls_count = 0
@@ -84,7 +84,7 @@ def make_grounded_gemini_api_call(payload, api_key, model, max_retries=3):
 
     for attempt in range(max_retries):
         try:
-            response = requests.post(url, json=payload, headers=headers, timeout=35)
+            response = requests.post(url, json=payload, headers=headers, timeout=65)
             
             if response.status_code == 200:
                 return response.json()
@@ -117,6 +117,8 @@ def parse_extracted_json(raw_json):
     if cleaned.endswith("```"):
         cleaned = cleaned[:-3]
     cleaned = cleaned.strip()
+    if not cleaned:
+        return None
     try:
         return json.loads(cleaned)
     except Exception as e:
