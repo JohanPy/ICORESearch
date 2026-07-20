@@ -192,7 +192,7 @@ def save_database(db):
         for acronym, entry in db.items():
             row = {
                 "Acronym": entry.get("acronym", acronym),
-                "Year": entry.get("year", TARGET_YEAR),
+                "Year": entry.get("target_year", entry.get("year", TARGET_YEAR)),
                 "Name": entry.get("name", "N/A"),
                 "Rank": entry.get("rank", "N/A"),
                 "URL": entry.get("url", "N/A"),
@@ -223,6 +223,80 @@ def save_database(db):
             print(f"Exported {len(rows)} records to {OUTPUT_CSV_PATH}")
     except Exception as e:
         print(f"Warning: Exporting CSV failed: {e}")
+
+
+# ==========================================
+# TODO 2: YEARLY ROLLOVER & HIBERNATION
+# ==========================================
+from datetime import timedelta
+
+def process_yearly_rollover(db_data):
+    """
+    Applies Year Rollover and Hibernation rules before batch selection.
+    Modifies db_data directly.
+    """
+    today = datetime.now(timezone.utc).date()
+    
+    for acronym, entry in db_data.items():
+        if entry.get("manual_override") is True:
+            continue
+            
+        status = entry.get("status")
+        # Ensure target_year is integer
+        try:
+            target_year = int(entry.get("target_year", TARGET_YEAR))
+        except ValueError:
+            target_year = TARGET_YEAR
+            
+        entry["target_year"] = target_year
+        
+        # Rule 1: Transition from DONE
+        if status == "DONE":
+            notif_str = entry.get("notification_date")
+            paper_str = entry.get("submission_deadline")
+            threshold_date = None
+            
+            if notif_str and notif_str != "N/A" and notif_str != "null":
+                try:
+                    threshold_date = datetime.strptime(notif_str, "%Y-%m-%d").date()
+                except ValueError:
+                    pass
+            
+            if not threshold_date and paper_str and paper_str != "N/A" and paper_str != "null":
+                try:
+                    paper_date = datetime.strptime(paper_str, "%Y-%m-%d").date()
+                    threshold_date = paper_date + timedelta(days=60)
+                except ValueError:
+                    pass
+                    
+            if threshold_date and today > threshold_date:
+                print(f"[Rollover] {acronym}: Edition {target_year} finished. Rolling over to {target_year + 1} and hibernating for 150 days.")
+                entry["target_year"] = target_year + 1
+                entry["status"] = "PENDING"
+                entry["status_detail"] = "Rollover to next year"
+                entry["hibernate_until"] = (today + timedelta(days=150)).strftime("%Y-%m-%d")
+                entry["abstract_deadline"] = None
+                entry["submission_deadline"] = None
+                entry["notification_date"] = None
+                entry["url"] = "N/A"
+                entry["last_checked"] = None
+                
+        # Rule 2: Transition from NOT_FOUND / INCOMPLETE
+        elif status in ["NOT_FOUND", "INCOMPLETE"]:
+            try:
+                nov_1st = datetime(target_year, 11, 1).date()
+                if today > nov_1st:
+                    print(f"[Rollover] {acronym}: Edition {target_year} missed (timeout). Rolling over to {target_year + 1}.")
+                    entry["target_year"] = target_year + 1
+                    entry["status"] = "PENDING"
+                    entry["status_detail"] = "Rollover due to timeout"
+                    entry["hibernate_until"] = None
+                    entry["abstract_deadline"] = None
+                    entry["submission_deadline"] = None
+                    entry["notification_date"] = None
+                    entry["last_checked"] = None
+            except ValueError:
+                pass
 
 
 # ==========================================
@@ -282,7 +356,7 @@ def is_done_eligible_for_verification(entry, today):
 # ==========================================
 # TODO 2: TRIAGE & VASES COMMUNICANTS QUEUE
 # ==========================================
-def select_batch_to_process(db, core_csv_path, target_year=TARGET_YEAR, max_batch=MAX_BATCH_SIZE):
+def select_batch_to_process(db, core_csv_path, max_batch=MAX_BATCH_SIZE):
     """
     Selects a batch of up to 120 conferences following priority rules:
       1. PENDING (max 60)
@@ -312,9 +386,10 @@ def select_batch_to_process(db, core_csv_path, target_year=TARGET_YEAR, max_batc
         if not acronym or acronym == "nan":
             continue
 
-        item_info = {"acronym": acronym, "name": name, "rank": rank, "year": target_year}
-
         if acronym not in db:
+            current_year = today.year
+            default_target = current_year + 1 if today.month >= 9 else current_year
+            item_info = {"acronym": acronym, "name": name, "rank": rank, "year": default_target}
             candidates_pending.append((item_info, "PENDING (New)", "HARVEST"))
         else:
             entry = db[acronym]
@@ -323,6 +398,19 @@ def select_batch_to_process(db, core_csv_path, target_year=TARGET_YEAR, max_batc
             if entry.get("manual_override") is True:
                 print(f"  [Manual Override] Skipping {acronym} (manual_override=True)")
                 continue
+
+            # Hibernation check
+            hibernate_str = entry.get("hibernate_until")
+            if hibernate_str and hibernate_str not in ["null", "N/A"]:
+                try:
+                    hibernate_date = datetime.strptime(hibernate_str, "%Y-%m-%d").date()
+                    if today < hibernate_date:
+                        continue
+                except ValueError:
+                    pass
+
+            target_year = entry.get("target_year", TARGET_YEAR)
+            item_info = {"acronym": acronym, "name": name, "rank": rank, "year": target_year}
 
             status = entry.get("status", "PENDING")
             last_checked_str = entry.get("last_checked")
@@ -430,11 +518,12 @@ Utilise ton mode de raisonnement (Thinking) pour t'assurer que les informations 
 
 Règles strictes :
 1. Si l'information ne concerne pas {year}, ou si tu n'as pas trouvé de site officiel valide, mets "year_found": false et toutes les dates à null.
-2. Ne devine pas les dates. Si c'est TBD ou TBA, mets null.
+2. EXCEPTION : Si le texte mentionne explicitement que les dates concernent l'édition {year} + 1, et qu'il n'y a aucune trace de l'édition {year}, accepte ces données, mais renvoie le champ "year_found" avec la valeur de l'année trouvée sous forme d'entier (ex: {year + 1}) au lieu d'un booléen.
+3. Ne devine pas les dates. Si c'est TBD ou TBA, mets null.
 
 Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante :
 {{
-  "conference": {{"acronym": "{acronym}", "year_found": true/false, "timezone": "ex: AoE" ou null}},
+  "conference": {{"acronym": "{acronym}", "year_found": true/false ou entier (ex: {year + 1}), "timezone": "ex: AoE" ou null}},
   "scope_and_topics": {{"short_description": "Description courte ou null", "topics": ["thème 1", "thème 2"]}},
   "main_track_dates": {{"abstract_submission": "YYYY-MM-DD" ou null, "paper_submission": "YYYY-MM-DD" ou null, "notification": "YYYY-MM-DD" ou null}},
   "other_tracks": [{{"track_name": "nom du track", "submission_date": "YYYY-MM-DD" ou null}}],
@@ -500,11 +589,12 @@ Extrais textuellement les blocs mentionnant les dates (Abstract, Paper, Notifica
             prompt2_2 = f"""Analyse les blocs de texte récupérés.
 Règles strictes :
 1. Si l'information ne concerne pas {year}, mets "year_found": false et toutes les dates à null.
-2. Ne devine pas les dates. Si c'est TBD ou TBA, mets null.
+2. EXCEPTION : Si le texte mentionne explicitement que les dates concernent l'édition {year} + 1, et qu'il n'y a aucune trace de l'édition {year}, accepte ces données, mais renvoie le champ "year_found" avec la valeur de l'année trouvée sous forme d'entier (ex: {year + 1}) au lieu d'un booléen.
+3. Ne devine pas les dates. Si c'est TBD ou TBA, mets null.
 
 Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante :
 {{
-  "conference": {{"acronym": "{acronym}", "year_found": true/false, "timezone": "ex: AoE" ou null}},
+  "conference": {{"acronym": "{acronym}", "year_found": true/false ou entier, "timezone": "ex: AoE" ou null}},
   "scope_and_topics": {{"short_description": "Description courte ou null", "topics": ["thème 1", "thème 2"]}},
   "main_track_dates": {{"abstract_submission": "YYYY-MM-DD" ou null, "paper_submission": "YYYY-MM-DD" ou null, "notification": "YYYY-MM-DD" ou null}},
   "other_tracks": [{{"track_name": "nom du track", "submission_date": "YYYY-MM-DD" ou null}}],
@@ -689,8 +779,11 @@ def main():
     # Load Database
     db = load_database()
 
+    # Process yearly rollover before selecting batch
+    process_yearly_rollover(db)
+
     # Select batch to process today
-    batch = select_batch_to_process(db, CORE_CSV_PATH, target_year=TARGET_YEAR, max_batch=MAX_BATCH_SIZE)
+    batch = select_batch_to_process(db, CORE_CSV_PATH, max_batch=MAX_BATCH_SIZE)
 
     if not batch:
         print("No conferences to process today. Exiting.")
@@ -725,6 +818,12 @@ def main():
                 topics_list = extracted.get("scope_and_topics", {}).get("topics", [])
                 topics_str = ", ".join(topics_list) if isinstance(topics_list, list) else "N/A"
 
+                # Check for year > target_year detection (TODO 5)
+                if isinstance(conf_year_found, int) and conf_year_found > year:
+                    print(f"  -> Anticipated Detection: Found edition {conf_year_found} instead of {year}!")
+                    year = conf_year_found
+                    conf_year_found = True
+
                 if conf_year_found and paper_sub:
                     state_status = "DONE"
                 elif conf_year_found or extracted.get("source_url") not in [None, "N/A"]:
@@ -737,7 +836,9 @@ def main():
                     "status_detail": extracted.get("status_detail", state_status),
                     "last_checked": today_str,
                     "manual_override": db.get(acronym, {}).get("manual_override", False),
+                    "hibernate_until": db.get(acronym, {}).get("hibernate_until"),
                     "acronym": acronym,
+                    "target_year": year,
                     "year": year,
                     "name": name,
                     "rank": rank,
@@ -758,7 +859,9 @@ def main():
                     "status_detail": "Grounded Search Failed",
                     "last_checked": today_str,
                     "manual_override": db.get(acronym, {}).get("manual_override", False),
+                    "hibernate_until": db.get(acronym, {}).get("hibernate_until"),
                     "acronym": acronym,
+                    "target_year": year,
                     "year": year,
                     "name": name,
                     "rank": rank,
