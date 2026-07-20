@@ -1,0 +1,54 @@
+name: Daily Conference Database Update
+
+on:
+  schedule:
+    # Runs every night at 02:00 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: update-db
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Execute Update Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python update_db.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "GitHub Action Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Check if conferences_db.json or conferences_filtrees.csv have been modified
+          if git status --porcelain | grep -E 'conferences_db.json|conferences_filtrees.csv'; then
+            echo "Changes detected in database files. Committing..."
+            git add conferences_db.json conferences_filtrees.csv
+            git commit -m "Automated database update [skip ci]"
+            git push
+          else
+            echo "No changes detected in database files. Skipping commit."
+          fi

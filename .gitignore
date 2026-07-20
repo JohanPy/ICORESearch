@@ -6,9 +6,7 @@ __pycache__/
 
 # Private configuration containing API keys
 config.yaml
-
-# Local output / extracted data
-conferences_filtrees.csv
+.env
 
 # IDE settings
 .vscode/
