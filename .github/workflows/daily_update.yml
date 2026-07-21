@@ -49,6 +49,7 @@ jobs:
             echo "Changes detected in database files. Committing..."
             git add conferences_db.json conferences_filtrees.csv
             git commit -m "Automated database update [skip ci]"
+            git pull --rebase origin master
             git push
           else
             echo "No changes detected in database files. Skipping commit."
