@@ -143,18 +143,73 @@ def get_metadata_url(candidate):
 
 def resolve_redirect_url(url, timeout=10):
     """Resolve redirect links to absolute target URLs."""
-    if not url or url == "N/A" or "grounding-api-redirect" not in url:
+    if not url or url == "N/A":
+        return "N/A"
+    if "grounding-api-redirect" not in url and "vertexai" not in url:
         return url
     try:
         response = requests.head(url, allow_redirects=True, timeout=timeout)
-        return response.url
+        if "grounding-api-redirect" not in response.url and "vertexai" not in response.url:
+            return response.url
     except Exception:
         try:
             response = requests.get(url, allow_redirects=True, timeout=timeout)
-            return response.url
+            if "grounding-api-redirect" not in response.url and "vertexai" not in response.url:
+                return response.url
         except Exception:
             pass
-    return url
+    return "N/A"
+
+
+def sanitize_extracted_dates(parsed, target_year=None):
+    """
+    Validates and cleans extracted dates upstream to prevent anomalies:
+    1. If abstract_deadline > submission_deadline -> clear abstract_deadline.
+    2. If submission_deadline > notification_date -> clear notification_date.
+    3. If submission_deadline year < target_year - 1 -> invalid year, clear submission_deadline.
+    """
+    if not parsed or not isinstance(parsed, dict):
+        return parsed
+
+    main_dates = parsed.get("main_track_dates")
+    if not isinstance(main_dates, dict):
+        return parsed
+
+    abs_str = main_dates.get("abstract_submission")
+    sub_str = main_dates.get("paper_submission")
+    notif_str = main_dates.get("notification")
+
+    def parse_d(d_str):
+        if not d_str or d_str in ["N/A", "null", "None"]:
+            return None
+        try:
+            return datetime.strptime(d_str, "%Y-%m-%d").date()
+        except ValueError:
+            return None
+
+    abs_d = parse_d(abs_str)
+    sub_d = parse_d(sub_str)
+    notif_d = parse_d(notif_str)
+
+    # Rule 1: Year sanity check
+    if sub_d and target_year:
+        if sub_d.year < target_year - 1:
+            print(f"    [Sanity Filter] Rejected submission date {sub_str} (year too far from target {target_year})")
+            main_dates["paper_submission"] = None
+            sub_d = None
+
+    # Rule 2: Abstract deadline cannot be after submission deadline
+    if abs_d and sub_d and abs_d > sub_d:
+        print(f"    [Sanity Filter] Abstract deadline ({abs_str}) > Submission deadline ({sub_str}). Clearing abstract deadline.")
+        main_dates["abstract_submission"] = None
+
+    # Rule 3: Submission deadline cannot be after notification date
+    if sub_d and notif_d and sub_d > notif_d:
+        print(f"    [Sanity Filter] Submission deadline ({sub_str}) > Notification date ({notif_str}). Clearing notification date.")
+        main_dates["notification"] = None
+
+    parsed["main_track_dates"] = main_dates
+    return parsed
 
 
 # ==========================================
@@ -547,6 +602,7 @@ Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante
                         if not source_url or source_url == "N/A" or "grounding-api-redirect" in source_url:
                             source_url = get_metadata_url(candidates2[0])
                         parsed["source_url"] = resolve_redirect_url(source_url)
+                        parsed = sanitize_extracted_dates(parsed, year)
                         
                         conf_year_found = parsed.get("conference", {}).get("year_found", False)
                         paper_sub = parsed.get("main_track_dates", {}).get("paper_submission")
@@ -618,6 +674,7 @@ Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante
                         if not source_url or source_url == "N/A" or "grounding-api-redirect" in source_url:
                             source_url = get_metadata_url(candidates2[0])
                         parsed["source_url"] = resolve_redirect_url(source_url)
+                        parsed = sanitize_extracted_dates(parsed, year)
                         
                         conf_year_found = parsed.get("conference", {}).get("year_found", False)
                         paper_sub = parsed.get("main_track_dates", {}).get("paper_submission")
@@ -682,7 +739,8 @@ Renvoie UNIQUEMENT un JSON strict (sans texte explicatif ni markdown ```) avec l
         candidates = res.get("candidates", [])
         if candidates and candidates[0].get("content", {}).get("parts", []):
             raw_json = candidates[0]["content"]["parts"][-1].get("text", "").strip()
-            return parse_extracted_json(raw_json)
+            parsed = parse_extracted_json(raw_json)
+            return sanitize_extracted_dates(parsed, target_year)
 
     return None
 
