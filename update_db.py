@@ -272,15 +272,11 @@ def process_yearly_rollover(db_data):
                     pass
                     
             if threshold_date and today > threshold_date:
-                print(f"[Rollover] {acronym}: Edition {target_year} finished. Rolling over to {target_year + 1} and hibernating for 150 days.")
+                print(f"[Rollover] {acronym}: Edition {target_year} finished. Rolling over to {target_year + 1} and hibernating for 75 days.")
                 entry["target_year"] = target_year + 1
                 entry["status"] = "PENDING"
-                entry["status_detail"] = "Rollover to next year"
-                entry["hibernate_until"] = (today + timedelta(days=150)).strftime("%Y-%m-%d")
-                entry["abstract_deadline"] = None
-                entry["submission_deadline"] = None
-                entry["notification_date"] = None
-                entry["url"] = "N/A"
+                entry["status_detail"] = f"Édition {target_year} terminée (Attente {target_year + 1})"
+                entry["hibernate_until"] = (today + timedelta(days=75)).strftime("%Y-%m-%d")
                 entry["last_checked"] = None
                 
         # Rule 2: Transition from NOT_FOUND / INCOMPLETE
@@ -291,11 +287,8 @@ def process_yearly_rollover(db_data):
                     print(f"[Rollover] {acronym}: Edition {target_year} missed (timeout). Rolling over to {target_year + 1}.")
                     entry["target_year"] = target_year + 1
                     entry["status"] = "PENDING"
-                    entry["status_detail"] = "Rollover due to timeout"
+                    entry["status_detail"] = f"Édition {target_year} non trouvée (Attente {target_year + 1})"
                     entry["hibernate_until"] = None
-                    entry["abstract_deadline"] = None
-                    entry["submission_deadline"] = None
-                    entry["notification_date"] = None
                     entry["last_checked"] = None
             except ValueError:
                 pass
