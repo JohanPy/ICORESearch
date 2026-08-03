@@ -2352,13 +2352,13 @@
     "confidence_score": 10
   },
   "ISMB": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-02",
+    "status": "PENDING",
+    "status_detail": "Édition 2026 terminée (Attente 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-10-17",
     "acronym": "ISMB",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "Intelligent Systems in Molecular Biology",
     "rank": "A",
@@ -3066,13 +3066,13 @@
     "confidence_score": 10
   },
   "CSCW": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-02",
+    "status": "PENDING",
+    "status_detail": "Édition 2026 terminée (Attente 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-10-17",
     "acronym": "CSCW",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "ACM Conference on Computer Supported Cooperative Work",
     "rank": "A",
@@ -3444,13 +3444,13 @@
     "confidence_score": 10
   },
   "HotOS": {
-    "status": "DONE",
-    "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-02",
+    "status": "PENDING",
+    "status_detail": "Édition 2026 terminée (Attente 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-10-17",
     "acronym": "HotOS",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "USENIX Workshop on Hot Topics in Operating Systems",
     "rank": "A",
@@ -3992,7 +3992,7 @@
   "ICITA": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-01",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICITA",
@@ -4244,25 +4244,25 @@
     "confidence_score": 10
   },
   "ICPM": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-07-23",
+    "status": "DONE",
+    "status_detail": "Success (Fallback Aggregators)",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICPM",
-    "target_year": 2026,
-    "year": 2026,
+    "target_year": 2027,
+    "year": 2027,
     "name": "International Conference on Process Mining",
     "rank": "B",
-    "url": "N/A",
-    "abstract_deadline": null,
-    "submission_deadline": null,
-    "notification_date": null,
+    "url": "https://wikicfp.com",
+    "abstract_deadline": "2026-09-04",
+    "submission_deadline": "2026-09-11",
+    "notification_date": "2026-11-04",
     "timezone": null,
-    "topics": "Process intelligence landscape, Industry collaboration, Vendor-neutral knowledge exchange, Real-world use cases, ICPM Hackathon",
-    "short_description": "Industry Days event dedicated to industry collaboration and vendor-neutral knowledge exchange on the process intelligence landscape.",
-    "other_tracks": "[{'track_name': 'Industry Days', 'submission_date': None}]",
-    "confidence_score": 5
+    "topics": "Event log building and preprocessing, Process discovery, Conformance checking, Performance analysis, Comparative process mining, Predictive and prescriptive process monitoring, Action-oriented process mining, Formal foundations of process mining, Conceptual models related to process mining, Process mining visualizations, Case studies and applications, Experiments involving process mining methods and techniques, Human-in-the-loop studies, Survey- and interview-based studies",
+    "short_description": "International Conference on Process Mining",
+    "other_tracks": "[]",
+    "confidence_score": 10
   },
   "ICPP": {
     "status": "PENDING",
@@ -4685,13 +4685,13 @@
     "confidence_score": 10
   },
   "IPEC": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-23",
+    "status": "PENDING",
+    "status_detail": "Édition 2026 terminée (Attente 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-10-17",
     "acronym": "IPEC",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "International Symposium on Parameterized and Exact Computation (was IWPEC pre 2004)",
     "rank": "B",
@@ -4834,7 +4834,7 @@
   "K-CAP": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-07-23",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "K-CAP",
@@ -4850,7 +4850,7 @@
     "topics": "",
     "short_description": null,
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 2
   },
   "KES": {
     "status": "PENDING",
@@ -5107,7 +5107,7 @@
   "MMM": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-23",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MMM",
@@ -5123,7 +5123,8 @@
     "topics": "Multimedia content analysis, Multimedia indexing, mining, abstraction and summarization, Multimedia annotation, tagging and recommendation, Multimodal analysis for retrieval applications, Multimedia signal processing and communications, Audio, image, video processing, coding and compression, Multimedia content delivery, transport and streaming, Extended reality and virtual environments, Multimedia applications and services, Responsible multimedia modeling and learning",
     "short_description": null,
     "other_tracks": "[{'track_name': 'VBS Papers', 'submission_date': None}, {'track_name': 'Demonstration Papers', 'submission_date': None}]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "MobileHCI": {
     "status": "PENDING",
@@ -5525,25 +5526,25 @@
     "confidence_score": 10
   },
   "COLING": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-07-23",
+    "status": "DONE",
+    "status_detail": "Success (Official Site)",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COLING",
-    "target_year": 2026,
-    "year": 2026,
+    "target_year": 2027,
+    "year": 2027,
     "name": "International Conference on Computational Linguistics",
     "rank": "B",
-    "url": "https://www.aclweb.org/portal/",
+    "url": "https://www.aclweb.org/portal/events/",
     "abstract_deadline": null,
-    "submission_deadline": null,
+    "submission_deadline": "2026-10-12",
     "notification_date": null,
     "timezone": null,
-    "topics": "Natural Language Processing",
-    "short_description": "International Conference on Computational Linguistics covering the full spectrum of NLP and language technology research.",
+    "topics": "",
+    "short_description": null,
     "other_tracks": "[]",
-    "confidence_score": 5
+    "confidence_score": 10
   },
   "COMPSAC": {
     "status": "PENDING",
@@ -10799,7 +10800,7 @@
   "CloudCom": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-28",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CloudCom",
@@ -13236,7 +13237,7 @@
   "ICVS": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-07-27",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICVS",
@@ -13246,13 +13247,14 @@
     "rank": "C",
     "url": "N/A",
     "abstract_deadline": null,
-    "submission_deadline": "2026-09-02",
+    "submission_deadline": "2026-09-14",
     "notification_date": null,
     "timezone": null,
     "topics": "Environmental Perception and Sensor Fusion, Smart Cockpit and Human-Computer Interaction, Intelligent Decision-Making and Collaborative Control, Intelligent Control of X-by-Wire Chassis, End-to-End Intelligent Driving Large Model and Self-Evolving Model Technology, Vehicle-Road-Cloud Collaboration and Connected Technology",
     "short_description": "Intelligent and Connected Vehicles Symposium focusing on environmental perception, smart cockpits, and intelligent driving technology.",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "extended_deadline": true
   },
   "IDEAL": {
     "status": "DONE",
@@ -15150,7 +15152,7 @@
   "PDCAT": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-28",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "PDCAT",
@@ -15318,7 +15320,7 @@
   "PEMWN": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-01",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "PEMWN",
@@ -15759,7 +15761,7 @@
   "MM_Asia": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-01",
+    "last_checked": "2026-08-03",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MM_Asia",
@@ -15769,13 +15771,14 @@
     "rank": "C",
     "url": "https://mmasia2026.org",
     "abstract_deadline": null,
-    "submission_deadline": "2026-08-03",
+    "submission_deadline": "2026-08-14",
     "notification_date": "2026-10-02",
     "timezone": null,
     "topics": "multimedia and vision, multimodal analysis, deep learning for multimedia, search and recommendation, HCI and quality of experience, multimedia systems, VR/AR, social good, healthcare, music and audio, multimedia transport and delivery",
     "short_description": "Topics include multimedia and vision, multimodal analysis, deep learning for multimedia, search and recommendation, HCI and quality of experience, multimedia systems, VR/AR, social good, healthcare, music and audio, and multimedia transport and delivery.",
     "other_tracks": "[{'track_name': 'Short Papers', 'submission_date': '2026-08-03'}, {'track_name': 'Special Session Papers', 'submission_date': '2026-08-03'}, {'track_name': 'BNI Papers', 'submission_date': '2026-08-03'}]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "extended_deadline": true
   },
   "ACML": {
     "status": "DONE",
