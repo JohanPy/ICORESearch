@@ -142,18 +142,21 @@ def get_metadata_url(candidate):
 
 
 def resolve_redirect_url(url, timeout=10):
-    """Resolve redirect links to absolute target URLs."""
+    """Resolve redirect links to absolute target URLs with standard browser headers."""
     if not url or url == "N/A":
         return "N/A"
     if "grounding-api-redirect" not in url and "vertexai" not in url:
         return url
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    }
     try:
-        response = requests.head(url, allow_redirects=True, timeout=timeout)
+        response = requests.head(url, headers=headers, allow_redirects=True, timeout=timeout)
         if "grounding-api-redirect" not in response.url and "vertexai" not in response.url:
             return response.url
     except Exception:
         try:
-            response = requests.get(url, allow_redirects=True, timeout=timeout)
+            response = requests.get(url, headers=headers, allow_redirects=True, timeout=timeout)
             if "grounding-api-redirect" not in response.url and "vertexai" not in response.url:
                 return response.url
         except Exception:
@@ -164,9 +167,9 @@ def resolve_redirect_url(url, timeout=10):
 def sanitize_extracted_dates(parsed, target_year=None):
     """
     Validates and cleans extracted dates upstream to prevent anomalies:
-    1. If abstract_deadline > submission_deadline -> clear abstract_deadline.
-    2. If submission_deadline > notification_date -> clear notification_date.
-    3. If submission_deadline year < target_year - 1 -> invalid year, clear submission_deadline.
+    1. Enforces year sanity bounds: year must be between target_year - 1 and target_year + 1.
+    2. If abstract_deadline > submission_deadline -> clear abstract_deadline.
+    3. If submission_deadline > notification_date -> clear notification_date.
     """
     if not parsed or not isinstance(parsed, dict):
         return parsed
@@ -191,12 +194,27 @@ def sanitize_extracted_dates(parsed, target_year=None):
     sub_d = parse_d(sub_str)
     notif_d = parse_d(notif_str)
 
-    # Rule 1: Year sanity check
-    if sub_d and target_year:
-        if sub_d.year < target_year - 1:
-            print(f"    [Sanity Filter] Rejected submission date {sub_str} (year too far from target {target_year})")
+    # Rule 1: Year sanity check against target_year bounds
+    target_year_int = None
+    if target_year is not None:
+        try:
+            target_year_int = int(target_year)
+        except (ValueError, TypeError):
+            pass
+
+    if target_year_int is not None:
+        if sub_d and (sub_d.year < target_year_int - 1 or sub_d.year > target_year_int + 1):
+            print(f"    [Sanity Filter] Rejected submission date {sub_str} (year out of bounds for target {target_year_int})")
             main_dates["paper_submission"] = None
             sub_d = None
+        if abs_d and (abs_d.year < target_year_int - 1 or abs_d.year > target_year_int + 1):
+            print(f"    [Sanity Filter] Rejected abstract date {abs_str} (year out of bounds for target {target_year_int})")
+            main_dates["abstract_submission"] = None
+            abs_d = None
+        if notif_d and (notif_d.year < target_year_int - 1 or notif_d.year > target_year_int + 2):
+            print(f"    [Sanity Filter] Rejected notification date {notif_str} (year out of bounds for target {target_year_int})")
+            main_dates["notification"] = None
+            notif_d = None
 
     # Rule 2: Abstract deadline cannot be after submission deadline
     if abs_d and sub_d and abs_d > sub_d:
@@ -302,7 +320,7 @@ def process_yearly_rollover(db_data):
         # Ensure target_year is integer
         try:
             target_year = int(entry.get("target_year", TARGET_YEAR))
-        except ValueError:
+        except (ValueError, TypeError):
             target_year = TARGET_YEAR
             
         entry["target_year"] = target_year
@@ -333,6 +351,10 @@ def process_yearly_rollover(db_data):
                 entry["status_detail"] = f"Édition {target_year} terminée (Attente {target_year + 1})"
                 entry["hibernate_until"] = (today + timedelta(days=75)).strftime("%Y-%m-%d")
                 entry["last_checked"] = None
+                # Reset old deadline dates to prevent date mismatch in UI while preserving domain URL
+                entry["abstract_deadline"] = None
+                entry["submission_deadline"] = None
+                entry["notification_date"] = None
                 
         # Rule 2: Transition from NOT_FOUND / INCOMPLETE
         elif status in ["NOT_FOUND", "INCOMPLETE"]:
@@ -345,6 +367,10 @@ def process_yearly_rollover(db_data):
                     entry["status_detail"] = f"Édition {target_year} non trouvée (Attente {target_year + 1})"
                     entry["hibernate_until"] = None
                     entry["last_checked"] = None
+                    # Reset old deadline dates to avoid invalid date persistence
+                    entry["abstract_deadline"] = None
+                    entry["submission_deadline"] = None
+                    entry["notification_date"] = None
             except ValueError:
                 pass
 
@@ -699,6 +725,13 @@ def verify_done_conference(acronym, entry, target_year, api_key, model):
     Uses exact prompt to check for deadline extensions on source_url.
     """
     source_url = entry.get("url", "N/A")
+    if not source_url or source_url == "N/A" or not source_url.startswith("http"):
+        print(f"  -> Verification impossible for {acronym}: URL missing or invalid ({source_url}). Demoted to INCOMPLETE.")
+        entry["status"] = "INCOMPLETE"
+        entry["status_detail"] = "URL missing for verification"
+        entry["last_checked"] = datetime.now(tz=timezone.utc).strftime("%Y-%m-%d")
+        return {"url_invalid_demoted": True}
+
     old_abstract_date = entry.get("abstract_deadline") or "N/A"
     old_paper_date = entry.get("submission_deadline") or "N/A"
 
@@ -757,6 +790,10 @@ def process_verification_result(entry, verify_res, today_str):
     """
     old_paper_str = entry.get("submission_deadline")
     
+    if isinstance(verify_res, dict) and verify_res.get("url_invalid_demoted"):
+        # Entry status was already updated to INCOMPLETE in verify_done_conference
+        return entry
+
     if not verify_res:
         print("  -> Verification response invalid. Flagging for manual review.")
         entry["needs_manual_review"] = True
@@ -877,9 +914,10 @@ def main():
                     year = conf_year_found
                     conf_year_found = True
 
-                if conf_year_found and paper_sub:
+                valid_url = (extracted.get("source_url") not in [None, "N/A", "null", ""]) and str(extracted.get("source_url", "")).startswith("http")
+                if conf_year_found and paper_sub and valid_url:
                     state_status = "DONE"
-                elif conf_year_found or extracted.get("source_url") not in [None, "N/A"]:
+                elif conf_year_found or paper_sub or valid_url or extracted.get("source_url") not in [None, "N/A"]:
                     state_status = "INCOMPLETE"
                 else:
                     state_status = "NOT_FOUND"
