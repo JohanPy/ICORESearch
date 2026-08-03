@@ -4,10 +4,19 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Private configuration containing API keys
+# Local environment & secrets
 config.yaml
 .env
+*.env
+
+# Temporary files, logs, and local backups
+*.log
+*.text
+execution_logs.jsonl
+*backup*.csv
+*(copie)*.csv
 
 # IDE settings
 .vscode/
 .idea/
+.DS_Store
