@@ -1,25 +1,4 @@
 {
-  "Acronym": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-07-21",
-    "manual_override": false,
-    "hibernate_until": null,
-    "acronym": "Acronym",
-    "target_year": 2026,
-    "year": 2026,
-    "name": "Title",
-    "rank": "Rank",
-    "url": "N/A",
-    "abstract_deadline": null,
-    "submission_deadline": null,
-    "notification_date": null,
-    "timezone": null,
-    "topics": "N/A",
-    "short_description": "N/A",
-    "other_tracks": "N/A",
-    "confidence_score": 0
-  },
   "AAAI": {
     "status": "PENDING",
     "status_detail": "Édition 2026 terminée (Attente 2027)",
