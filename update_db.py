@@ -348,7 +348,7 @@ def process_yearly_rollover(db_data):
                 print(f"[Rollover] {acronym}: Edition {target_year} finished. Rolling over to {target_year + 1} and hibernating for 75 days.")
                 entry["target_year"] = target_year + 1
                 entry["status"] = "PENDING"
-                entry["status_detail"] = f"Édition {target_year} terminée (Attente {target_year + 1})"
+                entry["status_detail"] = f"Edition {target_year} finished (Waiting for {target_year + 1})"
                 entry["hibernate_until"] = (today + timedelta(days=75)).strftime("%Y-%m-%d")
                 entry["last_checked"] = None
                 # Reset old deadline dates to prevent date mismatch in UI while preserving domain URL
@@ -364,7 +364,7 @@ def process_yearly_rollover(db_data):
                     print(f"[Rollover] {acronym}: Edition {target_year} missed (timeout). Rolling over to {target_year + 1}.")
                     entry["target_year"] = target_year + 1
                     entry["status"] = "PENDING"
-                    entry["status_detail"] = f"Édition {target_year} non trouvée (Attente {target_year + 1})"
+                    entry["status_detail"] = f"Edition {target_year} not found (Waiting for {target_year + 1})"
                     entry["hibernate_until"] = None
                     entry["last_checked"] = None
                     # Reset old deadline dates to avoid invalid date persistence
@@ -561,19 +561,19 @@ def extract_dates_cascade(acronym, name, year, api_key, model):
     Executes the 2-Phase Cascade LLM Search Strategy for new/incomplete conferences.
     """
     # Phase 1: Official Site
-    prompt1_1 = f"""[Mode Recherche Internet Actif]
-Trouve le site officiel de l'édition {year} de la conférence {acronym} ({name}).
+    prompt1_1 = f"""[Active Internet Search Mode]
+Find the official website for edition {year} of conference {acronym} ({name}).
 
-RÈGLES DE RECHERCHE STRICTES :
-1. Cherche UNIQUEMENT sur le site officiel de la conférence (URL contenant l'acronyme et l'année).
-2. IGNORE les sites comme WikiCFP, Research.com, Call4Papers.
-3. IGNORE les éditions passées. Nous voulons strictly l'édition {year}.
+STRICT SEARCH RULES:
+1. Search ONLY on the official conference website (URL containing acronym and target year).
+2. IGNORE aggregator sites like WikiCFP, Research.com, Call4Papers.
+3. IGNORE past editions. We strictly want edition {year}.
 
-Extrais textuellement les blocs concernant :
-- Les dates de la "Main Track" (Abstract, Full Paper, Notification).
-- Le petit descriptif ou "Call for Papers" listant les thèmes (Topics).
+Extract textual blocks concerning:
+- Main Track dates (Abstract, Full Paper, Notification).
+- Short scope description or "Call for Papers" listing topics.
 
-Affiche simplement les extraits bruts avec l'URL du site officiel en source.
+Display raw extracts with the official site URL as source.
 """
     payload1_1 = {
         "contents": [{"role": "user", "parts": [{"text": prompt1_1}]}],
@@ -589,20 +589,20 @@ Affiche simplement les extraits bruts avec l'URL du site officiel en source.
             model_parts1_1 = candidates[0]["content"]["parts"]
             time.sleep(2.5)
             
-            prompt1_2 = f"""Analyse les blocs de texte récupérés. 
-Utilise ton mode de raisonnement (Thinking) pour t'assurer que les informations proviennent bien du site officiel de {year}.
+            prompt1_2 = f"""Analyze the retrieved text blocks.
+Use your reasoning capability to ensure the information originates from the official website of edition {year}.
 
-Règles strictes :
-1. Si l'information ne concerne pas {year}, ou si tu n'as pas trouvé de site officiel valide, mets "year_found": false et toutes les dates à null.
-2. EXCEPTION : Si le texte mentionne explicitement que les dates concernent l'édition {year} + 1, et qu'il n'y a aucune trace de l'édition {year}, accepte ces données, mais renvoie le champ "year_found" avec la valeur de l'année trouvée sous forme d'entier (ex: {year + 1}) au lieu d'un booléen.
-3. Ne devine pas les dates. Si c'est TBD ou TBA, mets null.
+Strict Rules:
+1. If the information does not concern {year}, or if no valid official website was found, set "year_found": false and all dates to null.
+2. EXCEPTION: If the text explicitly states that dates concern edition {year} + 1, and there is no trace of edition {year}, accept the data, but return "year_found" as an integer (e.g. {year + 1}) instead of a boolean.
+3. Do not guess dates. If TBD or TBA, set to null.
 
-Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante :
+Generate ONLY a JSON object (no surrounding text) with the following structure:
 {{
-  "conference": {{"acronym": "{acronym}", "year_found": true/false ou entier (ex: {year + 1}), "timezone": "ex: AoE" ou null}},
-  "scope_and_topics": {{"short_description": "Description courte ou null", "topics": ["thème 1", "thème 2"]}},
-  "main_track_dates": {{"abstract_submission": "YYYY-MM-DD" ou null, "paper_submission": "YYYY-MM-DD" ou null, "notification": "YYYY-MM-DD" ou null}},
-  "other_tracks": [{{"track_name": "nom du track", "submission_date": "YYYY-MM-DD" ou null}}],
+  "conference": {{"acronym": "{acronym}", "year_found": true/false or integer (e.g. {year + 1}), "timezone": "e.g. AoE" or null}},
+  "scope_and_topics": {{"short_description": "Short description or null", "topics": ["topic 1", "topic 2"]}},
+  "main_track_dates": {{"abstract_submission": "YYYY-MM-DD" or null, "paper_submission": "YYYY-MM-DD" or null, "notification": "YYYY-MM-DD" or null}},
+  "other_tracks": [{{"track_name": "track name", "submission_date": "YYYY-MM-DD" or null}}],
   "source_url": "URL du site officiel",
   "confidence_score": 10
 }}
@@ -641,14 +641,14 @@ Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante
     time.sleep(3.0)
 
     # Phase 2: Aggregators
-    prompt2_1 = f"""[Mode Recherche Internet Actif]
-Nous n'avons pas pu trouver les dates sur le site officiel pour l'édition {year} de la conférence {acronym} ({name}).
+    prompt2_1 = f"""[Active Internet Search Mode]
+We could not find the dates on the official website for edition {year} of conference {acronym} ({name}).
 
-Cherche spécifiquement sur les agrégateurs académiques :
-1. En priorité sur WikiCFP (requête: site:wikicfp.com "{acronym} {year}").
-2. Sur Research.com ou d'autres annuaires.
+Search specifically on academic aggregators:
+1. Primary: WikiCFP (query: site:wikicfp.com "{acronym} {year}").
+2. Secondary: Research.com or other academic directories.
 
-Extrais textuellement les blocs mentionnant les dates (Abstract, Paper, Notification) et les thèmes (Topics) pour l'édition {year}.
+Extract textual blocks mentioning dates (Abstract, Paper, Notification) and topics for edition {year}.
 """
     payload2_1 = {
         "contents": [{"role": "user", "parts": [{"text": prompt2_1}]}],
@@ -663,19 +663,19 @@ Extrais textuellement les blocs mentionnant les dates (Abstract, Paper, Notifica
             model_parts2_1 = candidates[0]["content"]["parts"]
             time.sleep(2.5)
             
-            prompt2_2 = f"""Analyse les blocs de texte récupérés.
-Règles strictes :
-1. Si l'information ne concerne pas {year}, mets "year_found": false et toutes les dates à null.
-2. EXCEPTION : Si le texte mentionne explicitement que les dates concernent l'édition {year} + 1, et qu'il n'y a aucune trace de l'édition {year}, accepte ces données, mais renvoie le champ "year_found" avec la valeur de l'année trouvée sous forme d'entier (ex: {year + 1}) au lieu d'un booléen.
-3. Ne devine pas les dates. Si c'est TBD ou TBA, mets null.
+            prompt2_2 = f"""Analyze the retrieved text blocks.
+Strict Rules:
+1. If the information does not concern {year}, set "year_found": false and all dates to null.
+2. EXCEPTION: If the text explicitly states that dates concern edition {year} + 1, and there is no trace of edition {year}, accept the data, but return "year_found" as an integer (e.g. {year + 1}) instead of a boolean.
+3. Do not guess dates. If TBD or TBA, set to null.
 
-Génère UNIQUEMENT un objet JSON (sans texte autour) avec la structure suivante :
+Generate ONLY a JSON object (no surrounding text) with the following structure:
 {{
-  "conference": {{"acronym": "{acronym}", "year_found": true/false ou entier, "timezone": "ex: AoE" ou null}},
-  "scope_and_topics": {{"short_description": "Description courte ou null", "topics": ["thème 1", "thème 2"]}},
-  "main_track_dates": {{"abstract_submission": "YYYY-MM-DD" ou null, "paper_submission": "YYYY-MM-DD" ou null, "notification": "YYYY-MM-DD" ou null}},
-  "other_tracks": [{{"track_name": "nom du track", "submission_date": "YYYY-MM-DD" ou null}}],
-  "source_url": "URL de la source trouvée",
+  "conference": {{"acronym": "{acronym}", "year_found": true/false or integer, "timezone": "e.g. AoE" or null}},
+  "scope_and_topics": {{"short_description": "Short description or null", "topics": ["topic 1", "topic 2"]}},
+  "main_track_dates": {{"abstract_submission": "YYYY-MM-DD" or null, "paper_submission": "YYYY-MM-DD" or null, "notification": "YYYY-MM-DD" or null}},
+  "other_tracks": [{{"track_name": "track name", "submission_date": "YYYY-MM-DD" or null}}],
+  "source_url": "URL of the found source",
   "confidence_score": 10
 }}
 """
@@ -735,26 +735,26 @@ def verify_done_conference(acronym, entry, target_year, api_key, model):
     old_abstract_date = entry.get("abstract_deadline") or "N/A"
     old_paper_date = entry.get("submission_deadline") or "N/A"
 
-    prompt_verification = f"""[Mode Recherche Internet Actif]
-Utilise tes outils de navigation web pour consulter cette page précise : {source_url}
-Il s'agit du site officiel de la conférence {acronym} {target_year}.
+    prompt_verification = f"""[Active Internet Search Mode]
+Use your web browsing capabilities to inspect this specific page: {source_url}
+This is the official website for conference {acronym} {target_year}.
 
-Le mois dernier, nous avions extrait les dates suivantes pour la Main Track :
-- Abstract : {old_abstract_date}
-- Full Paper : {old_paper_date}
+Previously extracted Main Track dates:
+- Abstract: {old_abstract_date}
+- Full Paper: {old_paper_date}
 
-Ta mission est de lire la page pour vérifier si ces dates sont toujours d'actualité ou si la conférence a annoncé une extension de délai (généralement indiqué par "Deadline Extended" ou "Firm Deadline").
+Your mission is to read the page to verify if these dates are still current or if a deadline extension has been announced (often indicated by "Deadline Extended" or "Firm Deadline").
 
-Règles :
-1. Si les dates affichées sur la page sont identiques aux anciennes, renvoie-les telles quelles.
-2. Si le texte mentionne de nouvelles dates repoussées, renvoie les NOUVELLES dates.
-3. Ne devine rien. Si la page ne charge pas, ou si l'année est différente, mets null.
+Rules:
+1. If the dates displayed on the page match the old ones, return them as is.
+2. If the text mentions extended deadlines, return the NEW dates.
+3. Do not guess. If the page fails to load or the edition year differs, return null.
 
-Renvoie UNIQUEMENT un JSON strict (sans texte explicatif ni markdown ```) avec la structure suivante :
+Return ONLY strict JSON (no markdown fences or explanatory text) with the following structure:
 {{
   "main_track_dates": {{
-    "abstract_submission": "YYYY-MM-DD" ou null,
-    "paper_submission": "YYYY-MM-DD" ou null
+    "abstract_submission": "YYYY-MM-DD" or null,
+    "paper_submission": "YYYY-MM-DD" or null
   }},
   "is_extended": true/false,
   "confidence_score": 10

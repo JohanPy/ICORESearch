@@ -4,134 +4,134 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Daily Update](https://github.com/JohanPy/ICORESearch/actions/workflows/daily_update.yml/badge.svg)](https://github.com/JohanPy/ICORESearch/actions/workflows/daily_update.yml)
 
-**ICORESearch** est un tableau de bord web interactif couplé à un pipeline de données autonome (ETL) conçu pour automatiser la veille académique et le suivi des deadlines de conférences en informatique.
+**ICORESearch** is an interactive web dashboard coupled with an autonomous data pipeline (ETL) designed to automate monitoring and deadline tracking for Computer Science academic conferences.
 
-L'outil filtre les conférences académiques de la base **CORE**, effectue des recherches sur le Web via des modèles LLM avec recherche ancrée (Gemini avec Google Search Grounding) pour extraire automatiquement les dates de soumission, gère le roulement des éditions annuelles (Rollover) et surveille activement les extensions de délais (*Deadline Extensions*).
-
----
-
-## 🚀 Fonctionnalités Clés
-
-### 1. Tableau de bord Web Interactif (Frontend)
-* **Filtrage Multicritères** : Recherche dynamique par Acronyme, Rangs CORE (ex: `A*`, `A`, `B`, `C`), Année et sélection de Thématiques de recherche.
-* **Tri Dynamique** : Tri en un clic par dates de soumission, rangs ou acronymes.
-* **Badges & Visualisation** : Rendu visuel clair avec statut des deadlines (dates à venir vs dépassées, alertes "Deadline Extended").
-* **Édition Communautaire** : Bouton d'édition sur chaque ligne permettant aux utilisateurs de proposer des corrections directement sur GitHub.
-
-### 2. Moteur d'Enrichissement Autonome (Pipeline `update_db.py`)
-* **Extraction en Cascade (Phase 1 & 2)** :
-  * *Phase 1 (Site Officiel)* : Recherche ancrée axée sur le domaine et le site officiel de l'édition visée.
-  * *Phase 2 (Agrégateurs)* : Fallback sur les agrégateurs de référence (ex: WikiCFP, Researchr) si le site officiel n'est pas encore référencé.
-* **Résolution Robuste d'URL** : Suivi des redirections d'API de recherche avec en-têtes HTTP pour capturer les vraies URL d'atterrissage.
-* **Vérification Dynamique des Extensions** : Surveillance accrue à l'approche des dates limites pour détecter automatiquement les reports de soumission (*Firm Deadline / Extended*).
-* **Gestion du Cycle de Vie (Rollover & Hibernation)** :
-  * Lorsqu'une édition est terminée, le système passe automatiquement à la version suivante (`Target Year + 1`) et active une période d'hibernation (75 jours) pour préserver les quotas d'API.
-* **Hygiène & Validation des Données** :
-  * Validation stricte de la chronologie des dates (Abstract $\le$ Submission $\le$ Notification).
-  * Vérification automatique de la plage d'années applicables (`[target_year - 1, target_year + 1]`).
+The tool filters Computer Science conferences from the **CORE** ranking dataset, conducts web searches using grounded LLM models (Gemini with Google Search Grounding) to extract submission deadlines, handles yearly edition rollovers, and actively monitors deadline extensions.
 
 ---
 
-## 🛠️ Architecture du Système
+## 🚀 Key Features
+
+### 1. Interactive Web Dashboard (Frontend)
+* **Multi-criteria Filtering**: Dynamic search by Acronym, CORE Ranks (e.g., `A*`, `A`, `B`, `C`), Target Year, and Research Subject Areas.
+* **Dynamic Sorting**: One-click sorting by submission deadlines, rankings, or acronyms.
+* **Badges & Visual Status**: Clear indicators for upcoming vs. passed deadlines and "Deadline Extended" alerts.
+* **Community Contributions**: An edit button on every row allowing users to suggest corrections directly on GitHub via Pull Requests.
+
+### 2. Autonomous Data Enrichment Pipeline (`update_db.py`)
+* **Cascading Extraction (Phase 1 & Phase 2)**:
+  * *Phase 1 (Official Website)*: Grounded search targeted at the domain and official site of the target edition.
+  * *Phase 2 (Aggregators)*: Fallback search on trusted reference aggregators (e.g., WikiCFP, Researchr) if the official site is not yet listed.
+* **Robust Redirect URL Resolution**: Resolves grounding search API redirect links with standard browser headers to capture canonical landing URLs.
+* **Dynamic Verification Engine**: High-frequency monitoring as deadlines approach to automatically detect postponements (*Firm Deadline / Extended*).
+* **Lifecycle Management (Rollover & Hibernation)**:
+  * Automatically transitions completed editions to the next year (`Target Year + 1`) and hibernates entries (75 days) to conserve API quotas.
+* **Data Hygiene & Validation**:
+  * Enforces strict chronological order (Abstract $\le$ Submission $\le$ Notification).
+  * Validates year boundaries (`[target_year - 1, target_year + 1]`).
+
+---
+
+## 🛠️ System Architecture
 
 ```mermaid
 flowchart TD
-    subgraph GitHub Actions [Pipeline CI/CD Quotidien]
+    subgraph GitHub Actions [Daily CI/CD Pipeline]
         Cron([Cron / Workflow Dispatch]) --> Python[update_db.py]
         Python --> Rollover[Yearly Rollover & Hibernation]
-        Rollover --> Triage[Sélection du Batch Triage]
+        Rollover --> Triage[Batch Selection & Triage]
         
-        Triage --> |Nouvelles / Non Trouvées| Phase1[Cascade LLM Search]
-        Phase1 --> |Succès| Extract[Validation & Sanitization des Dates]
-        Phase1 --> |Échec| Phase2[Recherche Agrégateurs]
+        Triage --> |New / Not Found| Phase1[Cascade LLM Search]
+        Phase1 --> |Success| Extract[Date Validation & Sanitization]
+        Phase1 --> |Failure| Phase2[Aggregator Search]
         
-        Triage --> |Conférences DONE à vérifier| Verify[Vérification des Extensions]
+        Triage --> |DONE Conferences to Verify| Verify[Extension Verification Engine]
         Verify --> Extract
         
         Extract --> DB[(conferences_db.json)]
         DB --> Export[conferences_filtrees.csv]
     end
     
-    subgraph Frontend [Tableau de Bord Web Static]
+    subgraph Frontend [Static Web Dashboard]
         Export -.-> HTTP[index.html / script.js]
-        HTTP --> UI[Interface Utilisateur Web Interactive]
+        HTTP --> UI[Interactive Web Interface]
     end
 ```
 
 ---
 
-## 📦 Guide d'Installation & Utilisation Locale
+## 📦 Local Installation & Setup
 
-### Prérequis
-* Python 3.11 ou supérieur
-* Une clé API Gemini ([Google AI Studio](https://aistudio.google.com/))
+### Prerequisites
+* Python 3.11 or higher
+* A Gemini API Key ([Google AI Studio](https://aistudio.google.com/))
 
-### 1. Cloner le Dépôt
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/JohanPy/ICORESearch.git
 cd ICORESearch
 ```
 
-### 2. Installer les Dépendances
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configurer les Clés API
-Vous pouvez spécifier votre clé via variable d'environnement ou fichier de configuration :
+### 3. Configure API Credentials
+You can provide your API key via an environment variable or a local configuration file:
 
-* **Option A (Variable d'environnement)** :
+* **Option A (Environment Variable)**:
   ```bash
-  export GEMINI_API_KEY="votre_cle_api_gemini"
+  export GEMINI_API_KEY="your_gemini_api_key_here"
   ```
-* **Option B (Fichier YAML local)** :
-  Copiez le modèle et renseignez votre clé dans `config.yaml` (fichier ignoré par Git) :
+* **Option B (Local YAML File)**:
+  Copy the template and fill in your key in `config.yaml` (ignored by Git):
   ```bash
   cp config.example.yaml config.yaml
   ```
 
-### 4. Démarrer l'Interface Web Locale
+### 4. Launch the Web Interface
 ```bash
 python3 -m http.server 8000
 ```
-Ouvrez ensuite votre navigateur sur `http://localhost:8000`.
+Open your browser and navigate to `http://localhost:8000`.
 
-### 5. Exécuter le Script d'Enrichissement Manuellement
+### 5. Run the Data Pipeline Manually
 ```bash
 python3 update_db.py
 ```
 
 ---
 
-## 💻 Structure du Projet
+## 💻 Project Structure
 
 ```text
 ICORESearch/
 ├── .github/workflows/
-│   └── daily_update.yml   # Workflow GitHub Actions d'exécution automatique
-├── index.html              # Interface utilisateur web
-├── styles.css              # Feuille de style CSS
-├── script.js               # Parsing CSV, filtrage et rendu dynamique
-├── update_db.py            # Script ETL autonome d'extraction et mise à jour
-├── conferences_db.json     # Base de données JSON (source de vérité)
-├── conferences_filtrees.csv# Export CSV lu par l'interface Web
-├── CORE_all26.csv          # Dataset source des conférences CORE
-├── config.example.yaml     # Modèle de configuration exemple
-├── requirements.txt        # Dépendances Python
-└── LICENSE                 # Licence MIT
+│   └── daily_update.yml   # GitHub Actions automated workflow
+├── index.html              # Web user interface HTML
+├── styles.css              # Styling rules
+├── script.js               # CSV parsing, filtering, and table rendering
+├── update_db.py            # Autonomous ETL enrichment script
+├── conferences_db.json     # JSON database (Single Source of Truth)
+├── conferences_filtrees.csv# Tabular CSV export read by the frontend
+├── CORE_all26.csv          # Raw CORE dataset
+├── config.example.yaml     # Configuration template
+├── requirements.txt        # Python dependencies
+└── LICENSE                 # MIT License
 ```
 
 ---
 
-## 🔧 Overrides Manuels (Intervention Humaine)
+## 🔧 Manual Overrides
 
-Si une conférence nécessite un ajustement manuel spécifique :
-1. Éditez [conferences_db.json](file:///home/johan/Documents/IUT/codeOnGit/ICORESearch/conferences_db.json).
-2. Réglez le champ `"manual_override": true` pour l'acronyme concerné.
-3. Le pipeline `update_db.py` préservera vos modifications et ignorera les mises à jour automatiques pour cette entrée.
+If a conference entry requires manual correction:
+1. Edit [conferences_db.json](file:///home/johan/Documents/IUT/codeOnGit/ICORESearch/conferences_db.json).
+2. Set `"manual_override": true` for the corresponding acronym.
+3. The `update_db.py` pipeline will preserve your manual edits and skip automatic updates for that entry.
 
 ---
 
-## 📄 Licence
+## 📄 License
 
-Ce projet est distribué sous la licence libre **MIT**. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
+Distributed under the open-source **MIT License**. See [LICENSE](LICENSE) for details.
