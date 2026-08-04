@@ -507,6 +507,14 @@ def select_batch_to_process(db, core_csv_path, max_batch=MAX_BATCH_SIZE):
                         candidates_not_found.append((item_info, f"NOT_FOUND (Checked {(today - last_checked_date).days}d ago)", "HARVEST"))
                 except ValueError:
                     candidates_not_found.append((item_info, "NOT_FOUND (Invalid Date)", "HARVEST"))
+            elif status in ["DISCONTINUED", "BIENNIAL", "TRIENNIAL"]:
+                try:
+                    last_checked_date = datetime.strptime(last_checked_str, "%Y-%m-%d").date()
+                    # 90 days cooldown for inactive or non-annual conferences (safety net against false positives)
+                    if (today - last_checked_date).days > 90:
+                        candidates_not_found.append((item_info, f"{status} (Checked {(today - last_checked_date).days}d ago)", "HARVEST"))
+                except ValueError:
+                    candidates_not_found.append((item_info, f"{status} (Invalid Date)", "HARVEST"))
             elif status == "DONE":
                 is_eligible, days_to_dl = is_done_eligible_for_verification(entry, today)
                 if is_eligible:
@@ -712,6 +720,77 @@ Generate ONLY a JSON object (no surrounding text) with the following structure:
                             print(f"  -> INCOMPLETE / NOT FOUND: Dates not found.")
                             parsed["status_detail"] = "Wrong Edition / Date Not Found"
                         return parsed
+
+    return None
+
+
+# ==========================================
+# PHASE 3: PERIODICITY & ACTIVITY DIAGNOSTIC
+# ==========================================
+def check_periodicity_and_status(acronym, name, year, api_key, model):
+    """
+    Executes an AI grounded diagnostic when normal date extraction fails.
+    Determines if a conference is biennial, triennial, or discontinued/inactive.
+    """
+    prompt1 = f"""[Active Internet Search Mode]
+We are investigating the academic conference {acronym} ({name}). We could not find upcoming dates for edition {year}.
+
+Search specifically for:
+1. What is the frequency/periodicity of {acronym}? Is it annual, biennial (held every 2 years), or triennial?
+2. When was the last held edition of {acronym} (what year)?
+3. Is {acronym} officially discontinued, merged, or defunct?
+
+Extract factual evidence from reliable conference records, DBLP summaries, wiki, or official site archives.
+"""
+    payload1 = {
+        "contents": [{"role": "user", "parts": [{"text": prompt1}]}],
+        "tools": [{"googleSearch": {}}]
+    }
+
+    print(f"  [Harvest Phase 3 - Diagnostic] Querying periodicity & activity for {acronym}...")
+    res1 = make_grounded_gemini_api_call(payload1, api_key, model)
+    if not res1:
+        return None
+
+    candidates = res1.get("candidates", [])
+    if not candidates or not candidates[0].get("content", {}).get("parts", []):
+        return None
+
+    model_parts = candidates[0]["content"]["parts"]
+    time.sleep(2.5)
+
+    prompt2 = f"""Analyze the retrieved factual text blocks about conference {acronym} ({name}).
+
+Strict Rules:
+1. Determine "periodicity": must be strictly one of "annual", "biennial", "triennial", or "unknown".
+2. Determine "last_known_year": the integer year of the most recent confirmed edition (e.g. 2022, 2025, 2026). If completely unknown, return null.
+3. Determine "is_discontinued": true ONLY IF there is explicit evidence that the conference is discontinued, cancelled, merged, or has not been held since 2022 or earlier; otherwise false.
+
+Generate ONLY a JSON object (no surrounding text or markdown fences) with the following structure:
+{{
+  "acronym": "{acronym}",
+  "periodicity": "annual" | "biennial" | "triennial" | "unknown",
+  "last_known_year": integer or null,
+  "is_discontinued": true or false,
+  "reasoning": "short factual justification"
+}}
+"""
+    payload2 = {
+        "contents": [
+            {"role": "user", "parts": [{"text": prompt1}]},
+            {"role": "model", "parts": model_parts},
+            {"role": "user", "parts": [{"text": prompt2}]}
+        ],
+        "tools": [{"googleSearch": {}}]
+    }
+
+    print(f"  [Harvest Phase 3 - Diagnostic] JSON Analysis...")
+    res2 = make_grounded_gemini_api_call(payload2, api_key, model)
+    if res2:
+        candidates2 = res2.get("candidates", [])
+        if candidates2 and candidates2[0].get("content", {}).get("parts", []):
+            raw_json = candidates2[0]["content"]["parts"][-1].get("text", "").strip()
+            return parse_extracted_json(raw_json)
 
     return None
 
@@ -966,6 +1045,28 @@ def main():
                     "other_tracks": "N/A",
                     "confidence_score": 0
                 }
+
+            # If NOT_FOUND, perform Phase 3 diagnostic to check if conference is non-annual or discontinued
+            if entry["status"] == "NOT_FOUND":
+                time.sleep(3.0)
+                diag = check_periodicity_and_status(acronym, name, year, api_key, model)
+                if diag:
+                    periodicity = str(diag.get("periodicity", "annual")).lower()
+                    is_disc = bool(diag.get("is_discontinued", False))
+                    last_known = diag.get("last_known_year")
+                    
+                    if is_disc or (isinstance(last_known, int) and (year - last_known) >= 4):
+                        print(f"  -> DIAGNOSTIC DETECTED: Discontinued / Inactive since {last_known or 'past'}")
+                        entry["status"] = "DISCONTINUED"
+                        entry["status_detail"] = f"Discontinued (Last edition: {last_known or 'Unknown'})"
+                    elif periodicity in ["biennial", "triennial"]:
+                        next_year = year + 1 if periodicity == "biennial" else year + 2
+                        print(f"  -> DIAGNOSTIC DETECTED: {periodicity.capitalize()} conference (Last: {last_known}, Next expected: {next_year})")
+                        entry["status"] = periodicity.upper()
+                        entry["status_detail"] = f"{periodicity.capitalize()} edition (Next: {next_year})"
+                        entry["target_year"] = next_year
+                        entry["year"] = next_year
+                        entry["hibernate_until"] = f"{datetime.now(timezone.utc).year}-09-01"
 
             db[acronym] = entry
 

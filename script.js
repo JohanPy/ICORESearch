@@ -606,6 +606,20 @@ function getRankBadgeClass(rank) {
     return '';
 }
 
+function getStatusHtml(status) {
+    if (!status || status === 'N/A') return '<span style="font-size: 0.85rem; color: var(--text-muted);">N/A</span>';
+    const s = status.toLowerCase();
+    if (s.includes('success')) {
+        return `<span style="font-size: 0.85rem; color: #34d399; font-weight: 500;">${status}</span>`;
+    } else if (s.includes('biennial') || s.includes('triennial')) {
+        return `<span style="font-size: 0.85rem; color: #a78bfa; font-weight: 500;" title="Conference occurs cyclically. Automatically postponed to the next edition year.">${status}</span>`;
+    } else if (s.includes('discontinued') || s.includes('inactive') || s.includes('archived')) {
+        return `<span style="font-size: 0.85rem; color: #94a3b8; font-style: italic;" title="No active editions found in recent years. Protected by long verification cooldown.">${status}</span>`;
+    } else {
+        return `<span style="font-size: 0.85rem; color: #f87171;">${status}</span>`;
+    }
+}
+
 function renderTable(data) {
     const tbody = document.getElementById('table-body');
     tbody.innerHTML = '';
@@ -645,9 +659,7 @@ function renderTable(data) {
             <td>${conf['Notification Date'] || 'N/A'}</td>
             <td class="topics-cell" title="${formattedTopics}">${topicsText}</td>
             <td>
-                <span style="font-size: 0.85rem; color: ${conf.Status && conf.Status.toLowerCase().includes('success') ? '#34d399' : '#f87171'};">
-                    ${conf.Status || 'N/A'}
-                </span>
+                ${getStatusHtml(conf.Status)}
             </td>
             <td>
                 <div style="display: flex; align-items: center; gap: 8px;">
