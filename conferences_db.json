@@ -378,9 +378,9 @@
     "confidence_score": 10
   },
   "HPCA": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-07-21",
+    "status": "INCOMPLETE",
+    "status_detail": "Wrong Edition / Date Not Found",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "HPCA",
@@ -388,15 +388,15 @@
     "year": 2026,
     "name": "International Symposium on High Performance Computer Architecture",
     "rank": "A*",
-    "url": "N/A",
-    "abstract_deadline": null,
+    "url": "https://wikicfp.com/cfp/HPCA2026",
+    "abstract_deadline": "2025-07-25",
     "submission_deadline": null,
     "notification_date": null,
-    "timezone": null,
-    "topics": "N/A",
-    "short_description": "N/A",
-    "other_tracks": "N/A",
-    "confidence_score": 0
+    "timezone": "UTC",
+    "topics": "Processor, memory, and storage systems, Interconnection networks and network interface architecture, Domain-specific architectures (DSAs), accelerators, FPGA, CGRA, reconfigurable systems, Near-/in-memory computing, Quantum, superconducting, Cloud, datacenter, cluster/distributed computer systems, IoT, mobile, edge, embedded architectures, Compilers, OS, runtimes, 3D, chiplets, interposer, wafer-scale, Power, energy, sustainable computing, Security and privacy, Reliability and fault tolerance, Verification, testing, correctness, Architecture modeling and simulation, Evaluation and measurement of real computing systems",
+    "short_description": "Research on a wide range of high-performance computer architecture topics, including systems, specialized hardware, emerging computing, and infrastructure.",
+    "other_tracks": "[{'track_name': 'Industry Track', 'submission_date': '2025-09-19'}, {'track_name': 'Workshop/Tutorial Proposals', 'submission_date': '2025-10-03'}, {'track_name': 'Artifact Evaluation', 'submission_date': '2025-12-08'}]",
+    "confidence_score": 10
   },
   "HRI": {
     "status": "PENDING",
@@ -462,14 +462,14 @@
     "confidence_score": 10
   },
   "ICCV": {
-    "status": "NOT_FOUND",
+    "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-07-21",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICCV",
-    "target_year": 2026,
-    "year": 2026,
+    "target_year": 2027,
+    "year": 2027,
     "name": "IEEE International Conference on Computer Vision",
     "rank": "A*",
     "url": "N/A",
@@ -477,8 +477,8 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "",
-    "short_description": null,
+    "topics": "representation learning, object recognition, scene understanding, vision-language models",
+    "short_description": "IEEE/CVF International Conference on Computer Vision",
     "other_tracks": "[]",
     "confidence_score": 10
   },
@@ -903,9 +903,9 @@
     "confidence_score": 10
   },
   "PODC": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-07-21",
+    "status": "DONE",
+    "status_detail": "Success (Fallback Aggregators)",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "PODC",
@@ -913,15 +913,15 @@
     "year": 2026,
     "name": "ACM Symposium on Principles of Distributed Computing",
     "rank": "A*",
-    "url": "N/A",
-    "abstract_deadline": null,
-    "submission_deadline": null,
-    "notification_date": null,
+    "url": "https://wikicfp.com/cfp/podc2026",
+    "abstract_deadline": "2026-02-11",
+    "submission_deadline": "2026-02-16",
+    "notification_date": "2026-04-29",
     "timezone": null,
-    "topics": "N/A",
-    "short_description": "N/A",
-    "other_tracks": "N/A",
-    "confidence_score": 0
+    "topics": "Design and analysis of concurrent and distributed algorithms and data structures, Distributed and cloud storage, replication, and consistency, Distributed computing for machine learning, AI, and big data, Combinatorics and topology of distributed computing, Fault-tolerance, reliability, and self-organization, Biological distributed algorithms and systems",
+    "short_description": "An international forum on the theory, design, analysis, implementation, and application of distributed systems and networks.",
+    "other_tracks": "[{'track_name': 'ApPLIED 2026 Workshop', 'submission_date': None}]",
+    "confidence_score": 10
   },
   "PODS": {
     "status": "PENDING",
@@ -3824,7 +3824,7 @@
   "ALTA": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-06",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ALTA",
@@ -4226,7 +4226,7 @@
   "ICPM": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-03",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICPM",
@@ -10781,7 +10781,7 @@
   "CloudCom": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-10",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CloudCom",
@@ -13744,7 +13744,7 @@
   "IPCCC": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-10",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "IPCCC",
@@ -14459,7 +14459,7 @@
   "JURIX": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-06",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "JURIX",
@@ -15027,7 +15027,7 @@
   "PACLIC": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-10",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "PACLIC",
@@ -15044,7 +15044,8 @@
     "short_description": "Relevant topics for the conference include language studies and information processing and computational applications.",
     "other_tracks": "[]",
     "confidence_score": 10,
-    "extended_deadline": true
+    "extended_deadline": true,
+    "needs_manual_review": true
   },
   "PADL": {
     "status": "NOT_FOUND",
@@ -15595,7 +15596,7 @@
   "ICISSP": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-28",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICISSP",
@@ -15605,13 +15606,14 @@
     "rank": "C",
     "url": "https://icissp.scitevents.org",
     "abstract_deadline": null,
-    "submission_deadline": "2026-09-15",
+    "submission_deadline": "2026-10-22",
     "notification_date": "2026-11-13",
     "timezone": "AoE",
     "topics": "Security management and operations, Security and privacy applications and services, Technologies and foundations, Compliance, Risk management, Intrusion detection, Web, cloud and IoT security, AI and machine learning for security, Cryptography, Authentication and biometrics, Privacy-enhancing technologies",
     "short_description": "The International Conference on Information Systems Security and Privacy is an event where researchers and practitioners can meet and discuss state-of-the-art research about the technological, social, and regulatory challenges that regard the security, privacy, and trust of modern information systems.",
     "other_tracks": "[{'track_name': 'Position/Regular Papers', 'submission_date': '2026-10-22'}, {'track_name': 'Workshops/Special Sessions/Tutorials/Demos/Panels', 'submission_date': '2026-10-02'}, {'track_name': 'Abstracts Track', 'submission_date': '2026-12-03'}]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "extended_deadline": true
   },
   "ArtsIT": {
     "status": "DONE",
@@ -16037,7 +16039,7 @@
   "EMO": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-28",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EMO",
@@ -16646,7 +16648,7 @@
   "APORS": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-10",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "APORS",
@@ -16857,7 +16859,7 @@
   "BDCAT": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-10",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "BDCAT",
@@ -17970,7 +17972,7 @@
   "INDOCRYPT": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-10",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "INDOCRYPT",
@@ -17980,18 +17982,19 @@
     "rank": "National: India",
     "url": "https://indocrypt2026.cdacb.in/",
     "abstract_deadline": null,
-    "submission_deadline": "2026-08-15",
+    "submission_deadline": "2026-08-20",
     "notification_date": "2026-10-10",
     "timezone": "AoE",
     "topics": "Access Control, Applied Cryptography, Attacks & Malicious Code, Authentication & Identification, Blockchain Security and Privacy, Cryptographic Protocols, Cryptanalysis, Data and Computation Integrity, Edge/Fog Computing Security and Privacy, Embedded System Security, Formal Methods for Security, Game Theory for Cryptography, Hardware Security, Lightweight Cryptography, Machine Learning for Security, Multi-Party Computation, Network Security, Privacy-Enhancing Technologies, Public Key Cryptography, Post-quantum cryptography, Quantum Cryptography, Secure Voting, Security & Privacy, Secure Distributed Computing, Security in the Internet of Things, Symmetric Key Cryptography, Zero-Knowledge Proofs",
     "short_description": "Indocrypt 2026 invites original contributions on all technical aspects of cryptology.",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "extended_deadline": true
   },
   "COMAD": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-10",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COMAD",
@@ -20217,7 +20220,7 @@
   "UCC": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-06",
+    "last_checked": "2026-08-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "UCC",
