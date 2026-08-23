@@ -380,7 +380,7 @@
   "HPCA": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-12",
+    "last_checked": "2026-08-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "HPCA",
@@ -388,14 +388,14 @@
     "year": 2026,
     "name": "International Symposium on High Performance Computer Architecture",
     "rank": "A*",
-    "url": "https://wikicfp.com/cfp/HPCA2026",
-    "abstract_deadline": "2025-07-25",
+    "url": "N/A",
+    "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
-    "timezone": "UTC",
-    "topics": "Processor, memory, and storage systems, Interconnection networks and network interface architecture, Domain-specific architectures (DSAs), accelerators, FPGA, CGRA, reconfigurable systems, Near-/in-memory computing, Quantum, superconducting, Cloud, datacenter, cluster/distributed computer systems, IoT, mobile, edge, embedded architectures, Compilers, OS, runtimes, 3D, chiplets, interposer, wafer-scale, Power, energy, sustainable computing, Security and privacy, Reliability and fault tolerance, Verification, testing, correctness, Architecture modeling and simulation, Evaluation and measurement of real computing systems",
-    "short_description": "Research on a wide range of high-performance computer architecture topics, including systems, specialized hardware, emerging computing, and infrastructure.",
-    "other_tracks": "[{'track_name': 'Industry Track', 'submission_date': '2025-09-19'}, {'track_name': 'Workshop/Tutorial Proposals', 'submission_date': '2025-10-03'}, {'track_name': 'Artifact Evaluation', 'submission_date': '2025-12-08'}]",
+    "timezone": null,
+    "topics": "Systems & Microarchitecture, Accelerators & Specialization, Computing Paradigms, Software Interaction, Edge & Emerging Tech, Physical Implementation, Security and privacy, Reliability and fault tolerance, Power, energy, and sustainable computing, Verification, testing, and correctness, Architecture modeling and simulation methodologies",
+    "short_description": "International Symposium on High-Performance Computer Architecture focusing on processor, memory, and storage systems, accelerators, and emerging computing paradigms.",
+    "other_tracks": "[{'track_name': 'Industry Track', 'submission_date': '2025-09-19'}, {'track_name': 'Workshops and Tutorials', 'submission_date': '2025-10-03'}]",
     "confidence_score": 10
   },
   "HRI": {
@@ -464,7 +464,7 @@
   "ICCV": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-12",
+    "last_checked": "2026-08-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICCV",
@@ -472,15 +472,15 @@
     "year": 2027,
     "name": "IEEE International Conference on Computer Vision",
     "rank": "A*",
-    "url": "N/A",
+    "url": "https://iccv.thecvf.com/",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "representation learning, object recognition, scene understanding, vision-language models",
-    "short_description": "IEEE/CVF International Conference on Computer Vision",
+    "topics": "Recognition, Detection, Segmentation, 3D Reconstruction, Generative AI, Multimodal AI, Temporal Analysis, Learning Paradigms, Applied Vision",
+    "short_description": "International Conference on Computer Vision focusing on core CV, Generative AI, and Multimodal AI.",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 8
   },
   "ICDE": {
     "status": "PENDING",
@@ -1659,9 +1659,9 @@
     "confidence_score": 10
   },
   "ICME": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-08-01",
+    "status": "DONE",
+    "status_detail": "Success (Official Site)",
+    "last_checked": "2026-08-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICME",
@@ -1669,15 +1669,15 @@
     "year": 2026,
     "name": "IEEE International Conference on Multimedia and Expo",
     "rank": "A",
-    "url": "N/A",
+    "url": "https://2026.ieeeicme.org/",
     "abstract_deadline": null,
-    "submission_deadline": null,
-    "notification_date": null,
+    "submission_deadline": "2025-12-31",
+    "notification_date": "2026-03-13",
     "timezone": null,
-    "topics": "N/A",
-    "short_description": "N/A",
-    "other_tracks": "N/A",
-    "confidence_score": 0
+    "topics": "3D multimedia, AR/VR, and immersive media, Image and video processing, understanding, and generation, Multimodal learning and large models for multimedia, Multimedia databases, retrieval, and data mining, Content authenticity, watermarking, and media forensics, Multimedia systems, streaming, edge/cloud intelligence, and efficiency, Human-centered multimedia, recommendation, and social media analysis, Healthcare, scientific, and industrial multimedia applications",
+    "short_description": "IEEE International Conference on Multimedia and Expo (ICME) 2026",
+    "other_tracks": "[]",
+    "confidence_score": 10
   },
   "ICPC": {
     "status": "PENDING",
@@ -14734,7 +14734,7 @@
   "MEDES": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-17",
+    "last_checked": "2026-08-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MEDES",
@@ -18313,7 +18313,7 @@
   "ICISC": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICISC",
