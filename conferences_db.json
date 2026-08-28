@@ -3740,7 +3740,7 @@
   "ACCMCC": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-13",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ACCMCC",
@@ -5088,7 +5088,7 @@
   "MMM": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-26",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MMM",
@@ -5278,7 +5278,7 @@
   "NSS": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-22",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "NSS",
@@ -10425,7 +10425,7 @@
   "WETICE": {
     "status": "INCOMPLETE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-17",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "WETICE",
@@ -10435,12 +10435,12 @@
     "rank": "C",
     "url": "N/A",
     "abstract_deadline": null,
-    "submission_deadline": "2026-04-08",
-    "notification_date": "2026-04-30",
+    "submission_deadline": "2026-03-08",
+    "notification_date": "2026-04-15",
     "timezone": null,
-    "topics": "Distributed and Collaborative Business Processes, Process Mining, Workflow Automation, Collaborative Supply Chain Management, Distributed Database Technologies, Data Analytics and Fraud Detection, Data Visualization and Analytics, Data for Collaborative Processes, Cloud Computing for Collaboration, Consensus and Fault Tolerance Algorithms, Decentralized Autonomous Organizations (DAO), Data Privacy, Anonymity and Confidentiality, Collaboration in Legal services, Collaboration in Digital Strategies, Collaborative and Distributed Learning Platforms",
-    "short_description": "International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises",
-    "other_tracks": "[{'track_name': 'AICE (AI Cybersecurity for Enterprises)', 'submission_date': None}, {'track_name': 'AMHIS (Advanced Medical and Health Information Systems)', 'submission_date': '2026-04-08'}, {'track_name': 'Security and Privacy', 'submission_date': None}, {'track_name': 'FMTS', 'submission_date': None}, {'track_name': 'IACT', 'submission_date': None}, {'track_name': 'TechAgri', 'submission_date': None}]",
+    "topics": "Distributed and Collaborative Business Processes, Process Mining, Workflow Automation, Cloud Computing for Collaboration, Distributed Database Technologies, Consensus and Fault Tolerance Algorithms, Collaboration in Digital Strategies, Collaboration in Legal Services, Collaborative Supply Chain Management, Collaborative and Distributed Learning Platforms, Data Analytics and Fraud Detection, Data for Collaborative Processes, Data Visualization and Analytics, Data Privacy, Anonymity and Confidentiality, Decentralized Autonomous Organizations (DAO), AI-enhanced intrusion detection and prevention systems, Machine learning models for threat intelligence and malware analysis, Adversarial machine learning and model robustness, AI-assisted phishing and social engineering attacks, Deepfake detection and defense mechanisms, Secure model training and data privacy in AI systems, Automated security incident response using AI, Ethical and explainable AI for enterprise security decisions, AI-powered red teaming and penetration testing tools",
+    "short_description": "IEEE International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises focusing on collaborative business processes, infrastructure, and data analytics.",
+    "other_tracks": "[{'track_name': 'Privacy and Cybersecurity / AI Cybersecurity for Enterprises (AICE)', 'submission_date': '2026-04-08'}]",
     "confidence_score": 10
   },
   "WISTP": {
@@ -10612,9 +10612,9 @@
     "confidence_score": 10
   },
   "CIDM": {
-    "status": "INCOMPLETE",
-    "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-17",
+    "status": "DISCONTINUED",
+    "status_detail": "Discontinued (Last edition: 2023)",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CIDM",
@@ -10624,11 +10624,11 @@
     "rank": "C",
     "url": "N/A",
     "abstract_deadline": null,
-    "submission_deadline": "2026-08-10",
+    "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Evolutionary algorithms, swarm optimization, neural networks, deep learning, fuzzy logic, data mining theory, pattern recognition, predictive modeling",
-    "short_description": "Focused on the intersection of Computational Intelligence (CI) and Data Mining, applying CI techniques to large-scale data analysis.",
+    "topics": "",
+    "short_description": null,
     "other_tracks": "[]",
     "confidence_score": 10
   },
@@ -10654,9 +10654,9 @@
     "confidence_score": 10
   },
   "CIMA": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "status": "DISCONTINUED",
+    "status_detail": "Discontinued (Last edition: 2021)",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CIMA",
@@ -10664,14 +10664,14 @@
     "year": 2026,
     "name": "International Workshop on Combinations of Intelligent Methods and Applications",
     "rank": "C",
-    "url": "https://wikicfp.com",
+    "url": "N/A",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Blockchain, Federated Learning, IoMT in Healthcare",
-    "short_description": "International Workshop on Combinations of Intelligent Methods and Applications",
-    "other_tracks": "[{'track_name': 'Springer Book Chapters', 'submission_date': None}]",
+    "topics": "",
+    "short_description": null,
+    "other_tracks": "[]",
     "confidence_score": 10
   },
   "CIS": {
@@ -10867,7 +10867,7 @@
   "COMPLEXIS": {
     "status": "NOT_FOUND",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-06",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COMPLEXIS",
@@ -10907,9 +10907,9 @@
     "confidence_score": 10
   },
   "COPLAS": {
-    "status": "INCOMPLETE",
-    "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-17",
+    "status": "DISCONTINUED",
+    "status_detail": "Discontinued (Last edition: 2020)",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COPLAS",
@@ -10919,13 +10919,13 @@
     "rank": "C",
     "url": "N/A",
     "abstract_deadline": null,
-    "submission_deadline": "2026-05-12",
-    "notification_date": "2026-05-25",
+    "submission_deadline": null,
+    "notification_date": null,
     "timezone": null,
-    "topics": "CSP/SAT-based planning, Machine Learning (ML) integration, Heuristic Search, Explainability and interpretability of constraint-based solutions, Benchmarks, datasets, and evaluation methodologies",
-    "short_description": "Constraint And Satisfiability-based Planning: an Exploratory Research Workshop (CASP:ER) focusing on the relevance of CSP/SAT-based planning in the era of heuristic search and learning-based approaches.",
+    "topics": "",
+    "short_description": null,
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 0
   },
   "CRiSIS": {
     "status": "DONE",
@@ -11160,8 +11160,8 @@
   },
   "DeSE": {
     "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "status_detail": "Success (Fallback Aggregators)",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "DeSE",
@@ -11169,13 +11169,13 @@
     "year": 2026,
     "name": "Developments in eSystems Engineering",
     "rank": "C",
-    "url": "https://dese.ai/dese-2026/",
+    "url": "N/A",
     "abstract_deadline": null,
-    "submission_deadline": null,
+    "submission_deadline": "2026-09-15",
     "notification_date": null,
     "timezone": null,
-    "topics": "AI and its Applications, Computational Intelligence, Machine Learning, Web-based Decision Making, Deep Learning Methods and Techniques, Genetic Algorithms, Advanced Robotics, Sensors, Sensors Applications and Sensors Platforms, Nanomaterials and Energy, Internet of Everything (IoE) and its Applications, Big Data Systems, Mining and Management, Decision Support Systems, Novel Data Processing and Analytics, Biomedical Intelligence, Image Processing and Medical Imaging, Clinical Data Analysis, Bio-informatics, Health Informatics, Bio-Computing, eSystems Engineering",
-    "short_description": "Conference on the design, engineering, and adoption of eSystems, AI, and Industry 4.0.",
+    "topics": "Robotics & AI, Systems & Sensors, Health & Bio-Computing, Data & Computing, Engineering & Logic, Materials",
+    "short_description": "AI and Industry 4.0 for Better Health and Environment",
     "other_tracks": "[]",
     "confidence_score": 10
   },
@@ -11287,7 +11287,7 @@
   "DM": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "DM",
@@ -11300,9 +11300,9 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Discrete Mathematics, Combinatorial topics",
-    "short_description": "The premier conference for the field of discrete mathematics.",
-    "other_tracks": "[{'track_name': 'Minisymposium Proposal', 'submission_date': '2025-12-22'}, {'track_name': 'Travel Support Application', 'submission_date': '2026-03-23'}, {'track_name': 'Early Registration', 'submission_date': '2026-05-26'}]",
+    "topics": "Discrete Mathematics",
+    "short_description": "Premier SIAM conference focused on Discrete Mathematics.",
+    "other_tracks": "[{'track_name': 'Minisymposium Proposal Submission', 'submission_date': '2025-12-22'}, {'track_name': 'Travel Support Application', 'submission_date': '2026-03-23'}, {'track_name': 'Early Registration', 'submission_date': '2026-05-26'}]",
     "confidence_score": 10
   },
   "DS-RT": {
@@ -11455,7 +11455,7 @@
   "ECCO": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ECCO",
@@ -11468,10 +11468,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Combinatorial Optimization, Vehicle Routing Problems (VRP), Electric Vehicle Routing Problem with Capacitated Recharging Stations, Matheuristics for Routing with Time Windows",
-    "short_description": "Exchange of results and experiences in solving real-world problems within the field of Combinatorial Optimization.",
+    "topics": "Algorithm Engineering, Exact algorithms for combinatorial optimization problems, Heuristics and meta-heuristics, Global optimization, Semidefinite Optimization, Integer programming, Mixed integer programming, Multiobjective programming, Stochastic integer programming, Graph theory and networks, Routing, location, and capacity planning, Logistics and supply chain management, Manufacturing, Scheduling, Cutting and packing, Machine learning, Data mining, Computational biology, bioinformatics, medicine, Energy production and distribution, Telecommunications, Financial sector, Game theory, Healthcare and healthinformatics, Education and social networks, Development sector, Algorithm and Computational Design, Hybrid and regulatory systems",
+    "short_description": "European Conference on Combinatorial Optimization focusing on core algorithms, mathematical programming, and applied optimization.",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 9
   },
   "ECDG": {
     "status": "DISCONTINUED",
@@ -11623,7 +11623,7 @@
   "EOMAS": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EOMAS",
@@ -11636,15 +11636,15 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Observing the dynamic behavior of complex organizational systems, Measuring the impacts of IT on organizations, Analyzing the outcomes of organizational changes, Integration of M&S with other IS engineering disciplines, Practical applications for industry and tool developers",
-    "short_description": "The role, importance, and application of Modeling and Simulation (M&S) within Information Systems and Enterprise Systems Engineering from an organizational perspective.",
+    "topics": "Enterprise Modelling, Organizational Simulation, Model-Driven Engineering, Digital Twins, AI Integration",
+    "short_description": "International Workshop on Enterprise and Organizational Modelling and Simulation",
     "other_tracks": "[]",
-    "confidence_score": 5
+    "confidence_score": 7
   },
   "ETHICOMP": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-08-06",
+    "status": "DONE",
+    "status_detail": "Success (Official Site)",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ETHICOMP",
@@ -11652,15 +11652,15 @@
     "year": 2027,
     "name": "ETHICOMP Conference",
     "rank": "C",
-    "url": "N/A",
-    "abstract_deadline": null,
-    "submission_deadline": null,
+    "url": "https://www.aanmelder.nl/ethicomp2027/home",
+    "abstract_deadline": "2026-10-19",
+    "submission_deadline": "2026-10-19",
     "notification_date": null,
     "timezone": null,
-    "topics": "N/A",
-    "short_description": "N/A",
-    "other_tracks": "N/A",
-    "confidence_score": 0
+    "topics": "Minds, Algorithms, and Meaning: Rethinking Education in the Age of AI, AI Refusal in Education, Digital Care and the Human(e) Factor: Ethics of Emerging Technologies in Health, Welfare, and Organisations, Ethics, Law, and Governance of Dual-Use Technologies, Double Edged Sword: Cybersecurity and Artificial Intelligence Cross Paths, Re-imagining Ethical, Inclusive and Sustainable Digital Futures, The Politics and Practice of Refusal: Technology, History, and Alternative Futures, The Ethics of Hype and the Hype of Ethics",
+    "short_description": "Explore the ethical, social, political, and philosophical questions surrounding the development and use of technology. The theme of ETHICOMP 2027 is 'Tech Shaping Lives'.",
+    "other_tracks": "[]",
+    "confidence_score": 10
   },
   "EUC": {
     "status": "NOT_FOUND",
@@ -11705,9 +11705,9 @@
     "confidence_score": 10
   },
   "EURO": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "status": "DONE",
+    "status_detail": "Success (Fallback Aggregators)",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EURO",
@@ -11715,14 +11715,14 @@
     "year": 2027,
     "name": "European Conference on Operations Research",
     "rank": "C",
-    "url": "https://www.euro-or.org",
+    "url": "https://euro2027athens.gr/",
     "abstract_deadline": null,
-    "submission_deadline": null,
+    "submission_deadline": "2027-02-28",
     "notification_date": null,
     "timezone": null,
-    "topics": "",
-    "short_description": null,
-    "other_tracks": "[{'track_name': 'ROADEF/EURO 2026 Challenge', 'submission_date': None}]",
+    "topics": "Transportation and Logistics, Production and Supply Chain Management, Finance and Marketing, Energy, Health, and Social Networks, Decision Support Systems and Stochastic Optimization",
+    "short_description": "Primary forum for the Operational Research (OR) community involving researchers, academics, practitioners, and students.",
+    "other_tracks": "[]",
     "confidence_score": 10
   },
   "EuroCG": {
@@ -11749,7 +11749,7 @@
   "EUroComb": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EUroComb",
@@ -11762,8 +11762,8 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Algebraic Combinatorics, Combinatorial Geometry, Combinatorial Number Theory, Combinatorial Optimization, Designs and Configurations, Enumerative Combinatorics, Extremal Combinatorics, Graph Theory, Ordered Sets, Random Methods, Topological Combinatorics",
-    "short_description": "European Conference on Combinatorics, Graph Theory and Applications",
+    "topics": "",
+    "short_description": null,
     "other_tracks": "[]",
     "confidence_score": 10
   },
@@ -11810,9 +11810,9 @@
     "confidence_score": 10
   },
   "EUSFLAT": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "status": "DONE",
+    "status_detail": "Success (Official Site)",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EUSFLAT",
@@ -11820,14 +11820,14 @@
     "year": 2027,
     "name": "Conference of the European Society for Fuzzy Logic and Technologies",
     "rank": "C",
-    "url": "N/A",
+    "url": "https://eusflat.org",
     "abstract_deadline": null,
-    "submission_deadline": null,
-    "notification_date": null,
+    "submission_deadline": "2027-02-14",
+    "notification_date": "2027-04-16",
     "timezone": null,
-    "topics": "Theoretical foundations of fuzzy logic and fuzzy set theory, Approximate reasoning, Possibility theory and applications, Rough sets theory, Uncertainty modelling and imprecise probabilities, Explainable fuzzy systems, Fuzzy control, Theory and applications of decision-making, Forecasting and time series modelling, Cognitive modelling, Intelligent data analysis and data-mining, Clustering and classification, Data aggregation and fusion, Machine learning and Neuro-fuzzy systems, Natural language processing, Knowledge representation and engineering, Semantic web, Image processing and computer vision, Information retrieval, Database management and querying, Stochastic and fuzzy optimization, Linguistic modelling",
-    "short_description": "Joint Conference IFSA-EUSFLAT 2027 combining the 22nd World Congress of the International Fuzzy Systems Association and the 15th Conference of the European Society for Fuzzy Logic and Technologies.",
-    "other_tracks": "[]",
+    "topics": "computational intelligence, fuzzy logic, fuzzy systems, soft computing",
+    "short_description": "The aim of IFSA-EUSFLAT 2027 is to bring together researchers dealing with the theory and applications of computational intelligence, fuzzy logic, fuzzy systems, soft computing and related areas.",
+    "other_tracks": "[{'track_name': 'Special session proposals', 'submission_date': '2026-10-15'}]",
     "confidence_score": 10
   },
   "FDG": {
@@ -12001,7 +12001,7 @@
   "FQAS": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-17",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "FQAS",
@@ -12014,8 +12014,8 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Database management, data science, information retrieval, information filtering, Knowledge representation, logics, uncertainty handling, Knowledge discovery, analytics, soft computing, Human-computer interaction, management of multimedia information",
-    "short_description": "innovative query systems aimed at providing easy, flexible, and human-friendly access to information",
+    "topics": "Information Retrieval (IR), Database Management, Data Science, Information Filtering, Knowledge Discovery, Knowledge Representation, Logics, Uncertainty Handling, Soft Computing, Analytics, Human-Computer Interaction, Management of Multimedia Information, Multimodal, generative, and trustworthy AI, Ranking under uncertainty, Personalization and Ethics, Scalability of flexible queries",
+    "short_description": "Focuses on providing intuitive and flexible access to information, covering the intersection of IR, databases, and AI.",
     "other_tracks": "[]",
     "confidence_score": 10
   },
@@ -14145,7 +14145,7 @@
   "ISPA": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-22",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ISPA",
@@ -14735,7 +14735,7 @@
   "MEDES": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-23",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MEDES",
@@ -15137,7 +15137,7 @@
   "PDCAT": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-26",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "PDCAT",
@@ -18314,7 +18314,7 @@
   "ICISC": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-26",
+    "last_checked": "2026-08-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICISC",
@@ -18324,13 +18324,14 @@
     "rank": "National: Korea",
     "url": "http://www.icisc.org/",
     "abstract_deadline": null,
-    "submission_deadline": "2026-08-28",
+    "submission_deadline": "2026-09-11",
     "notification_date": "2026-10-26",
     "timezone": "KST",
     "topics": "Applications of Cryptographic Techniques, Authentication and Authorization, Biometric Authentication Systems, Blockchains and Decentralized Systems, Censorship-Resistant Technologies, Cryptanalyses, Cryptographic Protocols, Cryptographic Hash Functions, Digital Signatures, Efficient Cryptographic Implementations, Functional Encryption, Homomorphic Encryption, Key Management and Distribution, Post-Quantum Cryptography, Privacy-Enhancing Technologies (PETs), Secure Multiparty Computation, Side-Channel Attacks and Countermeasures, Symmetric-Key Cryptography, Zero-Knowledge Proofs, AI Security, Automotive and Autonomous Systems Security, Cloud, Supply Chain, and Zero Trust Security, Critical Infrastructure Security, Cyber-Physical Systems Security, Digital Forensics, Embedded, Hardware, and Physical Security, Measurement Studies and Security Evaluation, Mobile, Wireless, and Cellular Systems Security, Network Security, Operating Systems Security, Privacy and Data Protection, Security Policies and Trustworthy Systems",
     "short_description": null,
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "extended_deadline": true
   },
   "WISA": {
     "status": "PENDING",
