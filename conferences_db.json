@@ -2165,7 +2165,7 @@
   "NAACL": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-01",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "NAACL",
@@ -2181,7 +2181,8 @@
     "topics": "",
     "short_description": null,
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "OOPSLA": {
     "status": "PENDING",
@@ -3740,7 +3741,7 @@
   "ACCMCC": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-28",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ACCMCC",
@@ -3756,7 +3757,8 @@
     "topics": "combinatorics in mathematics, combinatorics in computer science",
     "short_description": "Annual meeting of the Combinatorial Mathematics Society of Australasia (CMSA) covering all areas of combinatorics in mathematics and computer science.",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "ACRA": {
     "status": "DONE",
@@ -5172,20 +5174,20 @@
     "confidence_score": 10
   },
   "NCA": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-23",
+    "status": "PENDING",
+    "status_detail": "Edition 2026 finished (Waiting for 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-11-26",
     "acronym": "NCA",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "IEEE International Symposium on Network Computing and Applications",
     "rank": "B",
     "url": "https://www.nca-ieee.org/2026/",
     "abstract_deadline": null,
-    "submission_deadline": "2026-07-03",
-    "notification_date": "2026-09-11",
+    "submission_deadline": null,
+    "notification_date": null,
     "timezone": "AoE",
     "topics": "Network Architectures & Protocols, Routing Mechanisms, Distributed Systems & Platforms, Cloud, Edge, Computing Continuum, Future Internet and Internet of Things, Content Delivery Network (CDN), Network Softwarization & Virtualization, Autonomic & Self-Networked Systems, Performance, QoS & Energy Efficiency, Security, Privacy & Dependability, Blockchain, Social Networks, Data/AI for Networked and Distributed Systems, Applications, Prototypes & Experiences, Mobile Ad-Hoc Networks (MANETs), Distributed Quantum Computing",
     "short_description": "The IEEE International Symposium on Network Computing and Applications is a large international forum for presenting and sharing recent research results and technological developments in the fields of network and distributed computing.",
@@ -5511,7 +5513,7 @@
   "COLING": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-02",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COLING",
@@ -8240,20 +8242,20 @@
     "confidence_score": 10
   },
   "PROFES": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-24",
+    "status": "PENDING",
+    "status_detail": "Edition 2026 finished (Waiting for 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-11-26",
     "acronym": "PROFES",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "Product Focused Software Process Improvement",
     "rank": "B",
     "url": "https://conf.researchr.org/home/profes-2026",
     "abstract_deadline": null,
-    "submission_deadline": "2026-07-23",
-    "notification_date": "2026-09-11",
+    "submission_deadline": null,
+    "notification_date": null,
     "timezone": "AoE",
     "topics": "Process modeling, management, assessment and improvement, Value- and data-driven development of products and services, Software analytics and empirical research, Agile software processes and agile product development, Processes for software and AI co-engineering, Integration of generative AI into software engineering workflows, Product quality models, Project management and distributed software development, Open-source development and software supply chain management",
     "short_description": null,
@@ -11646,7 +11648,7 @@
   "ETHICOMP": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-28",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ETHICOMP",
@@ -18360,25 +18362,25 @@
     "confidence_score": 10
   },
   "RoVISP": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "status": "BIENNIAL",
+    "status_detail": "Biennial edition (Next: 2028)",
+    "last_checked": "2026-09-12",
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-09-01",
     "acronym": "RoVISP",
-    "target_year": 2027,
-    "year": 2027,
+    "target_year": 2028,
+    "year": 2028,
     "name": "International Conference on Robotics, Vision, Signal Processing and Power Applications (was ROVPIA)",
     "rank": "National: Malaysia",
-    "url": "http://rovisp.eng.usm.my",
+    "url": "N/A",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Robotics, Vision, Signal Processing, Power Applications",
-    "short_description": "International Conference on Robotics, Vision, Signal Processing and Power Applications",
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "FIT": {
     "status": "DONE",
@@ -18634,8 +18636,8 @@
   },
   "ISUVR": {
     "status": "NOT_FOUND",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-21",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ISUVR",
@@ -18648,10 +18650,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "",
-    "short_description": null,
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "SISY": {
     "status": "PENDING",
@@ -18696,9 +18698,9 @@
     "confidence_score": 10
   },
   "IWANN": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "IWANN",
@@ -18706,15 +18708,15 @@
     "year": 2027,
     "name": "International Work-Conference on Artificial and Natural Neural Networks",
     "rank": "National: Spain",
-    "url": "https://www.wikicfp.com/cfp/iwann2027",
+    "url": "N/A",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "nature-inspired systems, computational intelligence methodologies, artificial neural networks, natural neural networks",
-    "short_description": "Discussion forum on the foundations, theory, models, and applications of systems inspired by nature using computational intelligence methodologies.",
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "PAAMS": {
     "status": "PENDING",
@@ -18780,9 +18782,9 @@
     "confidence_score": 10
   },
   "ATSIP": {
-    "status": "INCOMPLETE",
+    "status": "NOT_FOUND",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ATSIP",
@@ -18790,15 +18792,15 @@
     "year": 2026,
     "name": "International Conference on Advanced Technologies For Signal & Image Processing",
     "rank": "National: Tunisia",
-    "url": "http://lab-atms.com",
+    "url": "N/A",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Image & Video Processing, Speech & Signal Processing, Medical Imaging, Embedded Systems, Remote Sensing",
-    "short_description": "Recent advances, technologies, and applications in Signal and Image Processing.",
+    "topics": "",
+    "short_description": null,
     "other_tracks": "[]",
-    "confidence_score": 5
+    "confidence_score": 10
   },
   "KDViz": {
     "status": "DISCONTINUED",
@@ -18990,9 +18992,9 @@
     "confidence_score": 10
   },
   "MOPTA": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MOPTA",
@@ -19000,15 +19002,15 @@
     "year": 2026,
     "name": "Modelling and Optimization: Theory and Applications",
     "rank": "National: USA",
-    "url": "https://coral.ise.lehigh.edu/mopta2026",
-    "abstract_deadline": "2026-04-15",
+    "url": "N/A",
+    "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Discrete optimization, Continuous optimization, AI & Machine Learning, Industrial and Systems Engineering",
-    "short_description": "Brings together people working in discrete and continuous optimization on theoretical and applied aspects, focusing on AI & Machine Learning and Industrial and Systems Engineering.",
-    "other_tracks": "[{'track_name': 'AIMMS-MOPTA Optimization Modeling Competition', 'submission_date': '2026-04-15'}]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "MSST": {
     "status": "PENDING",
@@ -19116,9 +19118,9 @@
     "confidence_score": 10
   },
   "SIGUCCS": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "SIGUCCS",
@@ -19131,10 +19133,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Data Visualization, Network Security, DNS security, Stakeholder engagement, AI, IoT, Cloud Computing",
-    "short_description": "Higher education IT professionals sharing innovation, project ideas, and technical sessions under the theme 'Revolutionizing IT: From Quills to Quantum'.",
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "Tapia": {
     "status": "PENDING",
@@ -19243,8 +19245,8 @@
   },
   "WMSCI": {
     "status": "NOT_FOUND",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-21",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "WMSCI",
@@ -19257,10 +19259,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "",
-    "short_description": null,
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "WORLDCOMP": {
     "status": "PENDING",
@@ -19349,7 +19351,7 @@
   "CERIAS": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CERIAS",
@@ -19357,13 +19359,13 @@
     "year": 2026,
     "name": "Information Security Symposium",
     "rank": "National: USA",
-    "url": "N/A",
+    "url": "https://www.cerias.purdue.edu/",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Artificial Intelligence & Trust, Critical Infrastructure & IoT, Human-Centric Security, Cryptography & Authentication",
-    "short_description": "Cyber + X, focusing on the dynamic interplay between academia and industry.",
+    "topics": "Agentic AI, Space Cybersecurity, Agri-Security, Transportation Security, Quantum-Safe Hybrid Key Exchange, Explainable AI, Differentially Private Federated Learning, US Government acquisition frameworks for AI",
+    "short_description": "Annual Security Symposium focusing on 'Cyber + X', exploring the integration of cyber components across various physical domains.",
     "other_tracks": "[]",
     "confidence_score": 10
   },
@@ -19410,9 +19412,9 @@
     "confidence_score": 10
   },
   "GRC": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "GRC",
@@ -19420,15 +19422,15 @@
     "year": 2026,
     "name": "Visualization In Science and Education",
     "rank": "National: USA",
-    "url": "https://www.grc.org",
+    "url": "N/A",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "",
-    "short_description": null,
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "HOTI": {
     "status": "PENDING",
@@ -19600,8 +19602,8 @@
   },
   "CCEM": {
     "status": "NOT_FOUND",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-08-21",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CCEM",
@@ -19614,10 +19616,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "",
-    "short_description": null,
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "COMSNETS": {
     "status": "PENDING",
@@ -19873,9 +19875,9 @@
     "confidence_score": 10
   },
   "IBPRIA": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-01",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-12",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "IBPRIA",
@@ -19888,10 +19890,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Pattern Recognition, Image Analysis, Computer Vision, Artificial Intelligence",
-    "short_description": "Iberian Conference on Pattern Recognition and Image Analysis",
-    "other_tracks": "[{'track_name': 'APRP Best Doctoral Thesis Award', 'submission_date': '2027-07-08'}]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "QCE": {
     "status": "PENDING",
