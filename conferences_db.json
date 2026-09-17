@@ -3850,7 +3850,7 @@
   "APCCM": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-09-15",
+    "last_checked": "2026-09-17",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "APCCM",
@@ -7678,7 +7678,7 @@
   "TARK": {
     "status": "INCOMPLETE",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-06",
+    "last_checked": "2026-09-17",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "TARK",
@@ -7691,8 +7691,8 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "",
-    "short_description": null,
+    "topics": "Semantic models for knowledge, belief, and uncertainty, Bounded rationality and resource-bounded reasoning, Commonsense epistemic reasoning, Epistemic logic, Logics of knowledge and action, Formal analysis of games, Applications of reasoning about knowledge and other mental states, Belief revision, The role of knowledge in general information flow",
+    "short_description": "An interdisciplinary conference focused on reasoning about rationality and knowledge, spanning AI, logic, philosophy, economics, and psychology.",
     "other_tracks": "[]",
     "confidence_score": 10
   },
@@ -19586,7 +19586,7 @@
   "BTW": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-15",
+    "last_checked": "2026-09-17",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "BTW",
@@ -19595,14 +19595,15 @@
     "name": "Datenbanksysteme für Business, Technologie und Web",
     "rank": "National:Germany",
     "url": "https://btw2027.gi.de/",
-    "abstract_deadline": "2026-09-11",
-    "submission_deadline": "2026-09-18",
+    "abstract_deadline": "2026-09-24",
+    "submission_deadline": "2026-10-01",
     "notification_date": "2026-12-04",
     "timezone": null,
     "topics": "Query processing and optimization, Storage and physical database design, Indexing, access methods, Data management on modern hardware, Transaction processing and concurrency control, Data warehousing and analytics, Implementation and architecture of database systems, Parallel, distributed, and cloud-based data processing, NoSQL systems (e.g., systems for data streams and multi-modal data), Performance analysis and benchmarking, Green-IT, sustainability, data ethics, and FAIR data management, Data analytics, mining, intelligent systems, Machine learning for DB and DB for machine learning, Data transformation, integration, linkage, and interoperability, Data preparation, cleaning, profiling, and visualization, Data provenance, versioning, and reasoning, Data streaming and dataflow engines, Batch- and ETL-processing systems, Schema engineering, evolution",
     "short_description": "Conference focusing on Database Technologies and Systems, as well as Data Engineering & Data Science.",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "extended_deadline": true
   },
   "CCEM": {
     "status": "NOT_FOUND",
