@@ -5282,7 +5282,7 @@
   "NSS": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-18",
+    "last_checked": "2026-09-20",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "NSS",
@@ -18302,7 +18302,7 @@
   "MVA": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-20",
+    "last_checked": "2026-09-20",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MVA",
@@ -18318,7 +18318,8 @@
     "topics": "",
     "short_description": "International Conference on Machine Vision Applications",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "ICISC": {
     "status": "DONE",
