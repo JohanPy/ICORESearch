@@ -12133,7 +12133,7 @@
   "GWC": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-09-16",
+    "last_checked": "2026-09-22",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "GWC",
@@ -15606,7 +15606,7 @@
   "ICISSP": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-11",
+    "last_checked": "2026-09-22",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICISSP",
@@ -16764,9 +16764,9 @@
     "confidence_score": 10
   },
   "AROB": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-11",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-22",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "AROB",
@@ -16775,14 +16775,14 @@
     "name": "International Symposium on Artificial Life and Robotics",
     "rank": "C",
     "url": "N/A",
-    "abstract_deadline": "2026-10-28",
+    "abstract_deadline": null,
     "submission_deadline": null,
-    "notification_date": "2026-11-11",
-    "timezone": "UTC",
-    "topics": "Artificial brain, AI, Artificial life/living/mind, Agent-based modelling, Cognitive science, Complexity, Bio-inspired robotics, Bio-mimetics, Bio-robots, Bioinformatics, Nano-biology, Regenerative medicine, Machine Learning, Intelligent control, Neural networks, Neurocomputing technologies, Control techniques, Data mining, Mobile robots, Swarm robotics/intelligence, Walking robots, Robotic mechanisms, Manipulators, Motion planning/navigation, Human-machine interaction and collaboration, Robot vision, Image processing, Sensor/multi-sensor data fusion, Brain science, Biomedical imaging, Medical informatics, Security, Tele-operation",
-    "short_description": "International Symposium on Artificial Life and Robotics focusing on the development of new technologies blending computer simulations and hardware designs.",
-    "other_tracks": "[{'track_name': 'OS Proposal', 'submission_date': '2026-10-21'}, {'track_name': 'Journal Track Full Paper', 'submission_date': '2026-08-31'}]",
-    "confidence_score": 10
+    "notification_date": null,
+    "timezone": null,
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "ASRU": {
     "status": "BIENNIAL",
@@ -16912,9 +16912,9 @@
     "needs_manual_review": true
   },
   "Broadnets": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-11",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-22",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "Broadnets",
@@ -16927,10 +16927,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Next-generation communication networks, AI-Driven Security, Intelligent Systems",
-    "short_description": "16th International Conference on Broadband Communications, Networks, and Systems",
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "BSN": {
     "status": "PENDING",
@@ -17584,9 +17584,9 @@
     "confidence_score": 10
   },
   "RANLP": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-11",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-22",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "RANLP",
@@ -17599,10 +17599,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Large Language Models (LLMs), Generative AI, General NLP aspects",
-    "short_description": "Recent advances in all aspects of Natural Language Processing, with a particular emphasis on Large Language Models (LLMs) and Generative AI.",
-    "other_tracks": "[{'track_name': 'Student Research Workshop', 'submission_date': None}]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "AIMSA": {
     "status": "PENDING",
