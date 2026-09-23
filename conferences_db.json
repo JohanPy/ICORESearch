@@ -14152,7 +14152,7 @@
   "ISPA": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-21",
+    "last_checked": "2026-09-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ISPA",
@@ -16050,7 +16050,7 @@
   "EMO": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-21",
+    "last_checked": "2026-09-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EMO",
@@ -19353,9 +19353,9 @@
     "confidence_score": 10
   },
   "CERIAS": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-12",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CERIAS",
@@ -19363,15 +19363,15 @@
     "year": 2026,
     "name": "Information Security Symposium",
     "rank": "National: USA",
-    "url": "https://www.cerias.purdue.edu/",
+    "url": "N/A",
     "abstract_deadline": null,
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Agentic AI, Space Cybersecurity, Agri-Security, Transportation Security, Quantum-Safe Hybrid Key Exchange, Explainable AI, Differentially Private Federated Learning, US Government acquisition frameworks for AI",
-    "short_description": "Annual Security Symposium focusing on 'Cyber + X', exploring the integration of cyber components across various physical domains.",
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "CISS": {
     "status": "DONE",
@@ -19587,7 +19587,7 @@
   "BTW": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-17",
+    "last_checked": "2026-09-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "BTW",
@@ -19714,7 +19714,7 @@
   "Informatics": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-19",
+    "last_checked": "2026-09-23",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "Informatics",
