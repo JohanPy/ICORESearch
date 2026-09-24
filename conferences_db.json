@@ -2165,7 +2165,7 @@
   "NAACL": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-18",
+    "last_checked": "2026-09-24",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "NAACL",
@@ -5514,7 +5514,7 @@
   "COLING": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-18",
+    "last_checked": "2026-09-24",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COLING",
@@ -5530,7 +5530,8 @@
     "topics": "",
     "short_description": null,
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "COMPSAC": {
     "status": "PENDING",
@@ -12447,19 +12448,19 @@
     "confidence_score": 10
   },
   "IAS": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-17",
+    "status": "PENDING",
+    "status_detail": "Edition 2026 finished (Waiting for 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-12-08",
     "acronym": "IAS",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "IEEE Industry Applications Society Annual Conference",
     "rank": "National: USA",
     "url": "https://ias-am.ieee.org/2026/",
-    "abstract_deadline": "2026-03-15",
-    "submission_deadline": "2026-07-25",
+    "abstract_deadline": null,
+    "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
     "topics": "Industrial Power and Energy Systems, Smart Grids, Energy Storage Systems, Carbon-neutral Power and Energy Systems, Data Centers, Industrial Lighting Systems, Smart Manufacturing, Intelligent Process Control, Factory Automation, Industry 4.0, Regulation and Utilization of Electricity, Continuous process industries, Electrostatics",
