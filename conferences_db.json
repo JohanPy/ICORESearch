@@ -3741,7 +3741,7 @@
   "ACCMCC": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-09-12",
+    "last_checked": "2026-09-27",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ACCMCC",
@@ -3763,7 +3763,7 @@
   "ACRA": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-25",
+    "last_checked": "2026-09-27",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ACRA",
@@ -5767,7 +5767,7 @@
   "DCC": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-25",
+    "last_checked": "2026-09-27",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "DCC",
@@ -14154,7 +14154,7 @@
   "ISPA": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-25",
+    "last_checked": "2026-09-27",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ISPA",
@@ -16052,7 +16052,7 @@
   "EMO": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-25",
+    "last_checked": "2026-09-27",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EMO",
@@ -19589,7 +19589,7 @@
   "BTW": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-25",
+    "last_checked": "2026-09-27",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "BTW",
@@ -19717,7 +19717,7 @@
   "Informatics": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-25",
+    "last_checked": "2026-09-27",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "Informatics",
