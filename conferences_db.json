@@ -3676,19 +3676,19 @@
     "confidence_score": 10
   },
   "AI": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-28",
+    "status": "PENDING",
+    "status_detail": "Edition 2026 finished (Waiting for 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-12-12",
     "acronym": "AI",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "Australasian Joint Conference on Artificial Intelligence",
     "rank": "Australasian B",
     "url": "https://ajcai26.org/index.html",
     "abstract_deadline": null,
-    "submission_deadline": "2026-07-29",
+    "submission_deadline": null,
     "notification_date": null,
     "timezone": "UTC-0",
     "topics": "",
@@ -7677,9 +7677,9 @@
     "confidence_score": 10
   },
   "TARK": {
-    "status": "INCOMPLETE",
-    "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-17",
+    "status": "NOT_FOUND",
+    "status_detail": "Grounded Search Failed",
+    "last_checked": "2026-09-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "TARK",
@@ -7692,10 +7692,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "Semantic models for knowledge, belief, and uncertainty, Bounded rationality and resource-bounded reasoning, Commonsense epistemic reasoning, Epistemic logic, Logics of knowledge and action, Formal analysis of games, Applications of reasoning about knowledge and other mental states, Belief revision, The role of knowledge in general information flow",
-    "short_description": "An interdisciplinary conference focused on reasoning about rationality and knowledge, spanning AI, logic, philosophy, economics, and psychology.",
-    "other_tracks": "[]",
-    "confidence_score": 10
+    "topics": "N/A",
+    "short_description": "N/A",
+    "other_tracks": "N/A",
+    "confidence_score": 0
   },
   "TCC": {
     "status": "PENDING",
@@ -10262,19 +10262,19 @@
     "confidence_score": 10
   },
   "VINCI": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-29",
+    "status": "PENDING",
+    "status_detail": "Edition 2026 finished (Waiting for 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-12-12",
     "acronym": "VINCI",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "Visual Information Communication and Interaction",
     "rank": "C",
     "url": "https://cmt3.research.microsoft.com/VINCI2026/",
     "abstract_deadline": null,
-    "submission_deadline": "2026-07-29",
+    "submission_deadline": null,
     "notification_date": null,
     "timezone": "AoE",
     "topics": "Visual communication metaphors, Cognitive aspects of visual information comprehension, Empirical studies of novel visual metaphors, Visualization on artificial intelligence, machine learning, and other fields, Aesthetics in visual communication and computational aesthetics, Influence of visual arts and design to visual communication, Information visualization and visual analytics, Visual approaches to knowledge discovery, Visual interaction through multimodality, Visualization on mobile devices, Graph drawing and network visualization, Visual modeling languages, Visual programming languages, Graphical user interface design, Human-computer interaction, Explainable AI, Applications in SoftVis, BioVis, GeoVis, etc.",
@@ -11715,7 +11715,7 @@
   "EURO": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-08-28",
+    "last_checked": "2026-09-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EURO",
@@ -11820,7 +11820,7 @@
   "EUSFLAT": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-28",
+    "last_checked": "2026-09-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "EUSFLAT",
@@ -11836,7 +11836,8 @@
     "topics": "computational intelligence, fuzzy logic, fuzzy systems, soft computing",
     "short_description": "The aim of IFSA-EUSFLAT 2027 is to bring together researchers dealing with the theory and applications of computational intelligence, fuzzy logic, fuzzy systems, soft computing and related areas.",
     "other_tracks": "[{'track_name': 'Special session proposals', 'submission_date': '2026-10-15'}]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "FDG": {
     "status": "PENDING",
@@ -12135,7 +12136,7 @@
   "GWC": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-09-22",
+    "last_checked": "2026-09-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "GWC",
@@ -15608,7 +15609,7 @@
   "ICISSP": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-22",
+    "last_checked": "2026-09-28",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICISSP",
