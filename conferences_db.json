@@ -2165,7 +2165,7 @@
   "NAACL": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-24",
+    "last_checked": "2026-09-30",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "NAACL",
@@ -5514,7 +5514,7 @@
   "COLING": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-24",
+    "last_checked": "2026-09-30",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COLING",
@@ -9654,7 +9654,7 @@
   "SAFEProcess": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-15",
+    "last_checked": "2026-09-30",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "SAFEProcess",
@@ -15126,7 +15126,7 @@
   "PCS": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-08-30",
+    "last_checked": "2026-09-30",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "PCS",
@@ -15142,7 +15142,8 @@
     "topics": "Image and video coding, Model-based and synthetic coding, Screen content coding, Multimodal coding and processing, Learning-based image and video coding, Image and video coding with/for vision language models, Compressed-domain image/video analysis, Datasets for learning-based visual data coding and analysis, Image and video coding for machines, Multi-task image and video coding, Virtual, augmented, and mixed reality coding, 360° & multi-view video processing and coding, Point cloud processing and coding, Light field processing and coding, Immersive and volumetric video coding, Representation, analysis and coding of immersive and volumetric scenes, Emerging standards for visual data coding, Objective and subjective quality assessment, Transcoding and adaptive streaming, Optimized streaming for coded visual data, Live video communications, Error robustness, resilience and concealment, Low complexity video coding, Energy management in compression",
     "short_description": "PCS 2027 invites you to submit work that pushes the boundaries of image and video coding.",
     "other_tracks": "[{'track_name': 'Special Session Proposals', 'submission_date': '2026-11-01'}]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "PDCAT": {
     "status": "PENDING",
