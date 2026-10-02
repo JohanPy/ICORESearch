@@ -4018,20 +4018,20 @@
     "confidence_score": 10
   },
   "ITNAC": {
-    "status": "DONE",
-    "status_detail": "Success (Official Site)",
-    "last_checked": "2026-07-31",
+    "status": "PENDING",
+    "status_detail": "Edition 2026 finished (Waiting for 2027)",
+    "last_checked": null,
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-12-16",
     "acronym": "ITNAC",
-    "target_year": 2026,
+    "target_year": 2027,
     "year": 2026,
     "name": "International Telecommunication Networks and Applications Conference (was Australian Telecommunication Networks and Applications Conference)",
     "rank": "Australasian C",
     "url": "https://itnac.org.au/",
     "abstract_deadline": null,
-    "submission_deadline": "2026-08-01",
-    "notification_date": "2026-10-01",
+    "submission_deadline": null,
+    "notification_date": null,
     "timezone": null,
     "topics": "Mobile & Wireless Networks, Modelling and Simulation, Wireless access and routing protocols, Cross-layer design optimization, Green, energy efficient and sustainable networking, Nature and bio-inspired approaches to networking, Network-based mobile positioning and tracking, Cognitive and cooperative networking, Mobile social and ambient networks, Delay tolerant networks, Mobile and wireless broadband access networks, 4G/5G/6G networks, Wireless sensor networks, Vehicular Ad-hoc networks, Cognitive networks, Mission critical communications, Quantum computing & communication systems, Internet Technologies and Applications, Network modeling and simulation, Software defined networking, Smart Cities and Smart Grids, Traffic engineering, congestion and admission control, Content delivery networking, Datacenter networks and Cloud Computing, Sustainable networking, Peer-to-peer networks and overlays, Novel network-enabled applications and services, Future Internet routing schemes or transport concepts, IPv6 and future network addressing, High performance network virtualization",
     "short_description": "ITNAC 2026 seeks to address and capture highly innovative and state-of-the-art research from academia, communications industry and standardization bodies that covers distributed, mobile, cognitive and cloud computing, modelling and simulation, computer and data communications, local and metropolitan networks, optical, wired and wireless telecommunication networks and applications.",
@@ -15211,7 +15211,7 @@
   "IDDM": {
     "status": "NOT_FOUND",
     "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-10",
+    "last_checked": "2026-10-02",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "IDDM",
@@ -18540,7 +18540,7 @@
   "SACI": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-01",
+    "last_checked": "2026-10-02",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "SACI",
@@ -18556,7 +18556,8 @@
     "topics": "",
     "short_description": "SACI 2027 conference focuses on theory and application on the field of applied computational intelligence and informatics.",
     "other_tracks": "[]",
-    "confidence_score": 10
+    "confidence_score": 10,
+    "needs_manual_review": true
   },
   "SOFA": {
     "status": "DISCONTINUED",
