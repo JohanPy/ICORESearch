@@ -12136,7 +12136,7 @@
   "GWC": {
     "status": "DONE",
     "status_detail": "Success (Fallback Aggregators)",
-    "last_checked": "2026-09-28",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "GWC",
@@ -15610,7 +15610,7 @@
   "ICISSP": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-28",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICISSP",
@@ -18646,7 +18646,7 @@
   "ISUVR": {
     "status": "NOT_FOUND",
     "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ISUVR",
@@ -18707,14 +18707,14 @@
     "confidence_score": 10
   },
   "IWANN": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "status": "BIENNIAL",
+    "status_detail": "Biennial edition (Next: 2028)",
+    "last_checked": "2026-10-04",
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-09-01",
     "acronym": "IWANN",
-    "target_year": 2027,
-    "year": 2027,
+    "target_year": 2028,
+    "year": 2028,
     "name": "International Work-Conference on Artificial and Natural Neural Networks",
     "rank": "National: Spain",
     "url": "N/A",
@@ -18793,7 +18793,7 @@
   "ATSIP": {
     "status": "NOT_FOUND",
     "status_detail": "Wrong Edition / Date Not Found",
-    "last_checked": "2026-09-12",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ATSIP",
@@ -19003,7 +19003,7 @@
   "MOPTA": {
     "status": "NOT_FOUND",
     "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "MOPTA",
@@ -19127,9 +19127,9 @@
     "confidence_score": 10
   },
   "SIGUCCS": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "status": "INCOMPLETE",
+    "status_detail": "Wrong Edition / Date Not Found",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "SIGUCCS",
@@ -19142,10 +19142,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "N/A",
-    "short_description": "N/A",
-    "other_tracks": "N/A",
-    "confidence_score": 0
+    "topics": "IT Leadership & Management, Student Workforce Development, Technical Implementations & AI, Professional Development",
+    "short_description": "Revolutionizing IT from Quills to Quantum",
+    "other_tracks": "[]",
+    "confidence_score": 10
   },
   "Tapia": {
     "status": "PENDING",
@@ -19254,8 +19254,8 @@
   },
   "WMSCI": {
     "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "status_detail": "Wrong Edition / Date Not Found",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "WMSCI",
@@ -19268,10 +19268,10 @@
     "submission_deadline": null,
     "notification_date": null,
     "timezone": null,
-    "topics": "N/A",
-    "short_description": "N/A",
-    "other_tracks": "N/A",
-    "confidence_score": 0
+    "topics": "",
+    "short_description": null,
+    "other_tracks": "[]",
+    "confidence_score": 10
   },
   "WORLDCOMP": {
     "status": "PENDING",
@@ -19422,14 +19422,14 @@
     "confidence_score": 10
   },
   "GRC": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "status": "BIENNIAL",
+    "status_detail": "Biennial edition (Next: 2027)",
+    "last_checked": "2026-10-04",
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-09-01",
     "acronym": "GRC",
-    "target_year": 2026,
-    "year": 2026,
+    "target_year": 2027,
+    "year": 2027,
     "name": "Visualization In Science and Education",
     "rank": "National: USA",
     "url": "N/A",
@@ -19615,7 +19615,7 @@
   "CCEM": {
     "status": "NOT_FOUND",
     "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "last_checked": "2026-10-04",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "CCEM",
@@ -19888,14 +19888,14 @@
     "confidence_score": 10
   },
   "IBPRIA": {
-    "status": "NOT_FOUND",
-    "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-12",
+    "status": "BIENNIAL",
+    "status_detail": "Biennial edition (Next: 2028)",
+    "last_checked": "2026-10-04",
     "manual_override": false,
-    "hibernate_until": null,
+    "hibernate_until": "2026-09-01",
     "acronym": "IBPRIA",
-    "target_year": 2027,
-    "year": 2027,
+    "target_year": 2028,
+    "year": 2028,
     "name": "Iberian Conference on Pattern Recognition and Image Analysis",
     "rank": "National/Regional",
     "url": "N/A",
