@@ -2165,7 +2165,7 @@
   "NAACL": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-30",
+    "last_checked": "2026-10-05",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "NAACL",
@@ -5514,7 +5514,7 @@
   "COLING": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-09-30",
+    "last_checked": "2026-10-05",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "COLING",
