@@ -15610,7 +15610,7 @@
   "ICISSP": {
     "status": "DONE",
     "status_detail": "Success (Official Site)",
-    "last_checked": "2026-10-04",
+    "last_checked": "2026-10-10",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "ICISSP",
@@ -20436,7 +20436,7 @@
   "Acronym": {
     "status": "NOT_FOUND",
     "status_detail": "Grounded Search Failed",
-    "last_checked": "2026-09-18",
+    "last_checked": "2026-10-10",
     "manual_override": false,
     "hibernate_until": null,
     "acronym": "Acronym",
